@@ -31,5 +31,26 @@ def random_number_insertion(size):
     for i in range(size):
         lis[i] = random.randint(1, 6)
     return lis
-print(random_number_insertion(int(input("input size "))))
+# print(random_number_insertion(int(input("input size "))))
+# O(n)
 
+def print_your_list_to_the_screen(lis):
+    i = 0
+    for num in lis:
+        i += 1
+        if len(lis) == i:
+            print(num)
+        else:
+            print(num, end=', ') 
+# print_your_list_to_the_screen([3, 6, 1, 8, 3])
+# O(n)            
+
+def increase_numbers_at_random_index(lis):
+    for i in range(len(lis)):
+        random_number = random.randint(0, len(lis)-1)
+    lis[random_number] = random_number
+    return lis
+# print(increase_numbers_at_random_index([3, 6, 1, 8, 3]))
+# O(n)
+
+def switch_items_in_list():
