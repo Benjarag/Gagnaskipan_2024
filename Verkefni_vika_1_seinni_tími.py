@@ -54,3 +54,4 @@ def increase_numbers_at_random_index(lis):
 # O(n)
 
 def switch_items_in_list():
+    pass
