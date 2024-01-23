@@ -1,0 +1,17 @@
+A. 
+Build a class that holds a 
+collection of objects called pizza
+● Make an operation that adds
+a pizza with 1-3 toppings
+○ Each pizza should be unserved
+○ The operation should return
+a unique ID for this pizza
+● Make an operation that
+marks a pizza served
+○ Use the unique ID to 
+choose this specific pizza
+● Make an operation that returns 
+a string representing all the pizzas
+● Make an operation that removes 
+all pizzaz that have been served
+
