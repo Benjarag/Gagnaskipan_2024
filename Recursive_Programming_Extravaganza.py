@@ -62,6 +62,32 @@ def power(base, exp):
 
 # print(power(2,3))
 
+def fibonacci(n): # this function takes more time
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else: 
+        return fibonacci(n-1) + fibonacci(n-2) 
+    
+# print(fibonacci(8)) 
+
+def fibonacci_2(n): # this functiion takes less time
+    def fibonacci_helper(a, b, count):
+        if count == 0:
+            return a
+        else:
+            return fibonacci_helper(b, a + b, count - 1)
+
+    if n < 0:
+        return "Invalid input, please provide a non-negative integer."
+    else:
+        return fibonacci_helper(0, 1, n)
+
+# print(fibonacci_2(34))
+
+
+
 
 
     
