@@ -42,15 +42,22 @@ class ArrayList:
 
         except ValueError:
             raise IndexOutOfBounds("Index is out of bounds")
-
+    # ekki alveg rétt því þetta er O(n) en ekki O(1)
+        
     #Time complexity: O(1) - constant time
     def append(self, value):
         '''
         Adds an item to the list after the last item
         '''
-        # TODO: remove 'pass' and implement functionality
-        pass
+        if self.size:
+            self.arr[self.size] = value
+            self.size += 1
+        else:
+            raise IndexError("Cannot append, list is full")
 
+        return self.arr
+        
+     
     #Time complexity: O(1) - constant time
     def set_at(self, value, index):
         '''
@@ -58,8 +65,11 @@ class ArrayList:
             ■ Overwrites the current value there
             ■ If the index is not within the current list, raise IndexOutOfBounds()
         '''
-        # TODO: remove 'pass' and implement functionality
-        pass
+        try:
+            if index < 0 or index > self.size:
+                raise ValueError("index out of bounds")
+        except ValueError:
+            raise IndexOutOfBounds("Index is out of bounds")    
 
     #Time complexity: O(1) - constant time
     def get_first(self):
