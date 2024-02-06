@@ -1,5 +1,5 @@
-import array_list
-from array_list import *
+import hópverkefni
+from hópverkefni import *
 import sys
 import shlex
 
