@@ -18,6 +18,10 @@ class ArrayList:
     #Time complexity: O(n) - linear time in size of list
     def __str__(self):
         return_string = ""
+        i = 0
+        while i < self.size:
+            return_string += str(self.arr[i]) + " "
+            i += 1
         return return_string
     
     #Time complexity: O(n) - linear time in size of list
@@ -127,7 +131,7 @@ class ArrayList:
     def insert_ordered(self, value):
         '''
         nsert a value so that the list retains ordering
-○ If the ArrayList instance is not in an ordered state, raise NotOrdered()
+        ○ If the ArrayList instance is not in an ordered state, raise NotOrdered()
         '''
         # TODO: remove 'pass' and implement functionality
         pass
@@ -189,4 +193,5 @@ if __name__ == "__main__":
 
     arr_list = ArrayList()
     arr_list.insert(5, 1)
-    print(str(arr_list))  # Output: 0, 5, 0, 0
+    print(arr_list)
+    # Output: 0, 5, 0, 0
