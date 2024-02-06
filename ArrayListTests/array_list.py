@@ -182,7 +182,7 @@ class ArrayList:
                 if not self.arr[i] < self.arr[i + 1]:
                     raise NotOrdered("the ArrayList instance is not in an ordered state")    
         except NotOrdered:
-            raise NotOrdered("the ArrayList instance is not in an ordered state")
+            return None
 
     #Time complexity: O(n) - linear time in size of list
     def insert_ordered(self, value):
@@ -190,7 +190,11 @@ class ArrayList:
         insert a value so that the list retains ordering
         ○ If the ArrayList instance is not in an ordered state, raise NotOrdered()
         '''
-        self.is_ordered()
+        
+        try:
+            self.is_ordered()
+        except NotOrdered:    
+            pass
 
         for i in range(0, self.size - 1):
             if self.arr[i] > value:
@@ -227,8 +231,7 @@ class ArrayList:
                     return index
                 else:
                     raise NotFound("the value is not found in the list")
-
-            elif not self.is_ordered():
+            else:
                 for i in range(0, self.size - 1):
                     if self.arr[i] == value:
                         return i
@@ -262,29 +265,39 @@ class ArrayList:
                         raise NotFound("the value is not found in the list")
         except NotFound:
             raise NotFound("the value is not found in the list")
-        
-    def modulus(a, b):
-        '''
-        ● Write the recursive operation modulus that calculates the modulus of two integers without using
-        the mathematical operators *, / or %
-        ○ e.g.
-        ■ modulus(13, 4) == 1
-        ■ modulus(12, 3) == 0
-        ■ modulus(14, 3) == 2
-        '''
-        pass
 
-    def how_many(lis1, lis2):
-        '''
-        ● Write the recursive operation how_many that takes two lists and returns an integer the value of
-        which is how many of the items in lis1 are also in lis2.
-        ○ e.g.
-        ■ how_many([a,f,d,t], [a,b,c,d,e]) == 2
-        ○ If two items in lis1 have the same value, they are each counted
-        ■ E.g.
-        ● how_many([a,b,f,g,a,t,c], [a,b,c,d,e]) == 4
-        '''
-        pass
+
+def modulus(a, b):
+    '''
+    ● Write the recursive operation modulus that calculates the modulus of two integers without using
+    the mathematical operators *, / or %
+    ○ e.g.
+    ■ modulus(13, 4) == 1
+    ■ modulus(12, 3) == 0
+    ■ modulus(14, 3) == 2
+    '''
+    if a > b:
+        return modulus(a - b, b)
+    else:
+        return a
+        
+def how_many(lis1, lis2):
+    '''
+    ● Write the recursive operation how_many that takes two lists and returns an integer the value of
+    which is how many of the items in lis1 are also in lis2.
+    ○ e.g.
+    ■ how_many([a,f,d,t], [a,b,c,d,e]) == 2
+    ○ If two items in lis1 have the same value, they are each counted
+    ■ E.g.
+    ● how_many([a,b,f,g,a,t,c], [a,b,c,d,e]) == 4
+    '''
+    if not lis1:
+        return 0
+    else:
+        counter = how_many(lis1[1:], lis2)
+        if lis1[0] in lis2:
+            counter += 1
+        return counter
 
 
 
