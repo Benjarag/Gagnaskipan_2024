@@ -207,3 +207,33 @@ which is how many of the items in lis1 are also in lis2.
 ■ E.g.
 
 ● how_many([a,b,f,g,a,t,c], [a,b,c,d,e]) == 4
+
+
+
+
+það sem er bannað:
+
+Many things are not allowed:
+● Calling a built-in function on the list class
+○ lis.append(“some_string”)
+○ lis.insert(i, 19)
+● Sending the list directly into a built-in python function
+○ len(lis)
+○ print(lis)
+○ str(lis)
+● Using ranges or negative integers in the bracket operator
+○ lis[1:]
+○ lis[0:10]
+○ lis[-1]
+○ Lis[1:-1]
+● Using operators directly on the list
+○ lis3 = lis1 + lis2
+○ lis += [3,4]
+○ lis += “some_string”
+○ lis *= 2
+■ although this is good for a quick-fix resize implementation
+■ it is not “legal” in a final implementation
+○ lis2 = lis1 * 2
+● Using the join functionality in any way
+● Using the in keyword or any other keyword directly on the list
+○ including for x in lis

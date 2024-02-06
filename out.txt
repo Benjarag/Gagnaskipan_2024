@@ -1,0 +1,17 @@
+
+    new int
+current list: 
+
+    prepend 23
+current list: 23 
+
+    prepend 21
+current list: 21 23 
+
+    prepend 19
+current list: 19 21 23 
+
+    insert 20 1
+current list: 19 20 21 23 
+
+    insert 22 3
