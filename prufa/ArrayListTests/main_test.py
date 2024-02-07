@@ -1,5 +1,7 @@
+from array_list import ArrayList
 import sys
 import shlex
+from array_list import IndexOutOfBounds, Empty, NotOrdered, NotFound
 
 class MyClass:
     def __init__(self, number, name, data):
@@ -56,13 +58,13 @@ for line in f:
             arr_lis.insert(get_as_correct_type(words[1], type), int(words[2]))
             print_list(arr_lis)
         except IndexOutOfBounds:
-            print("Index out of bounds!")
+                    print("Index out of bounds!")
     elif words[0] == "set_at":
         try:
             arr_lis.set_at(get_as_correct_type(words[1], type), int(words[2]))
             print_list(arr_lis)
         except IndexOutOfBounds:
-            print("Index out of bounds!")
+                    print("Index out of bounds!")
     elif words[0] == "get_first":
         print_list(arr_lis)
         try:
@@ -70,7 +72,7 @@ for line in f:
         except Empty:
             print("The list is empty!")
         except IndexOutOfBounds:
-            print("Index out of bounds!")
+                    print("Index out of bounds!")
     elif words[0] == "get_at":
         print_list(arr_lis)
         try:
@@ -113,6 +115,7 @@ for line in f:
             print_list(arr_lis)
         except NotFound:
             print("Value not found in list")
+
 f.close()
 
 sys.stdout = orig_stdout

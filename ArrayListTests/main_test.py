@@ -115,6 +115,7 @@ for line in f:
             print_list(arr_lis)
         except NotFound:
             print("Value not found in list")
+
 f.close()
 
 sys.stdout = orig_stdout
