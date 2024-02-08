@@ -113,7 +113,7 @@ class ArrayList:
         '''
 
         try:
-            if index < 0 or index > self.size:
+            if index < 0 or index > self.size - 1:
                 raise IndexOutOfBounds("the index is not within the current list")
 
             return self.arr[index]            
@@ -219,7 +219,7 @@ class ArrayList:
                 min = mid + 1
             else:
                 max = mid - 1
-        return False # return none if it is not found
+        return None # return none if it is not found
 
     #Time complexity: O(n) - linear time in size of list
     #Time complexity: O(log n) - logarithmic time in size of list

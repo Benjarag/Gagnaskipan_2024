@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from array_list import ArrayList
+=======
+import array_list
+>>>>>>> lagaði
 from array_list import *
 import sys
 import shlex
