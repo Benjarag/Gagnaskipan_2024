@@ -46,18 +46,15 @@ class ArrayList:
         It should be possible to add to the front and back of the list, and anywhere in between
         '''
         self.resize()
-        try:
-            if index < 0 or index > self.capacity - 1:
-                raise IndexOutOfBounds()
-            
-            for i in range(self.size - 1, index - 1, -1):
-                self.arr[i + 1] = self.arr[i]
+        if index < 0 or index > self.capacity - 1:
+            raise IndexOutOfBounds()
 
-            self.arr[index] = value
-            self.size += 1
+        for i in range(self.size - 1, index - 1, -1):
+            self.arr[i + 1] = self.arr[i]
 
-        except IndexOutOfBounds:
-            raise IndexOutOfBounds("Index is out of bounds")
+        self.arr[index] = value
+        self.size += 1
+
         
     #Time complexity: O(1) - constant time
     def append(self, value):
@@ -79,29 +76,25 @@ class ArrayList:
         '''
         try:
             if index < 0 or index > self.size - 1:
-                raise ValueError("index out of bounds")
-            
+                raise IndexOutOfBounds("index out of bounds")
+        
             self.arr[index] = value
-            
+        
             return self.arr
 
-        except ValueError:
-            raise IndexOutOfBounds("Index is out of bounds")    
-
+        except IndexOutOfBounds as e:
+            raise e
+        
     #Time complexity: O(1) - constant time
     def get_first(self):
         '''
         Returns the first value in the list
         If there are no items in the list, raise Empty()
         '''
-        try:
-            if not self.arr:
-                raise Empty("There are no items in the list")
-            else:
-                return self.arr[0]
-
-        except Empty:
+        if not self.arr:
             raise Empty("There are no items in the list")
+        else:
+            return self.arr[0]
 
     #Time complexity: O(1) - constant time
     def get_at(self, index):
@@ -109,15 +102,10 @@ class ArrayList:
         Returns the value at a specific location in the list
         If the index is not within the current list, raise IndexOutOfBounds()
         '''
-
-        try:
-            if index < 0 or index > self.size - 1:
-                raise IndexOutOfBounds("the index is not within the current list")
-
-            return self.arr[index]            
-
-        except IndexOutOfBounds:
+        if index < 0 or index > self.size - 1:
             raise IndexOutOfBounds("the index is not within the current list")
+
+        return self.arr[index]            
 
     #Time complexity: O(1) - constant time
     def get_last(self):
@@ -125,14 +113,10 @@ class ArrayList:
         Returns the last value in the list
         If there are no items in the list, raise Empty()
         '''
-        try:
-            if not self.arr:
-                raise Empty("There are no items in the list")
-            else:
-                return self.arr[-1]
-
-        except Empty:
+        if not self.arr:
             raise Empty("There are no items in the list")
+        else:
+            return self.arr[-1]
 
     #Time complexity: O(n) - linear time in size of list
     def resize(self):
@@ -155,16 +139,13 @@ class ArrayList:
         Removes from the list an item at a specific location
         If the index is not within the current list, raise IndexOutOfBounds()
         '''
-        try:
-            if index < 0 or index > self.size - 1:
-                raise IndexOutOfBounds("the index is not within the current list")
-            
-            for i in range(index, self.size - 1):
-                self.arr[i] = self.arr[i + 1]
-            
-            self.size -= 1
-        except IndexOutOfBounds:
-            raise IndexOutOfBounds("the index is not within the current list")        
+        if index < 0 or index > self.size - 1:
+            raise IndexOutOfBounds("the index is not within the current list")
+        
+        for i in range(index, self.size - 1):
+            self.arr[i] = self.arr[i + 1]
+        
+        self.size -= 1    
 
     #Time complexity: O(1) - constant time
     def clear(self):
@@ -177,13 +158,14 @@ class ArrayList:
         self.size = 0
 
     def is_ordered(self):
-        try:
-            for i in range(0, self.size - 1):
-                if not self.arr[i] < self.arr[i + 1]:
-                    raise NotOrdered("the ArrayList instance is not in an ordered state")    
-        except NotOrdered:
-            return None
-
+        '''
+        Checks if the ArrayList instance is in an ordered state
+        '''
+        for i in range(self.size - 1):
+            if self.arr[i] >= self.arr[i + 1]:
+                return False
+        return True
+    
     #Time complexity: O(n) - linear time in size of list
     def insert_ordered(self, value):
         '''
@@ -224,19 +206,16 @@ class ArrayList:
         If the ArrayList instance is not ordered, use linear search
         If the value is not found in the list, raise NotFound()
         '''
-        try:
-            if self.is_ordered():
-                index = self.binary_search(value)
-                if index is not None:
-                    return index
-                else:
-                    raise NotFound("the value is not found in the list")
+        if self.is_ordered():
+            index = self.binary_search(value)
+            if index is not None:
+                return index
             else:
-                for i in range(0, self.size - 1):
-                    if self.arr[i] == value:
-                        return i
                 raise NotFound("the value is not found in the list")
-        except NotFound:
+        else:
+            for i in range(0, self.size - 1):
+                if self.arr[i] == value:
+                    return i
             raise NotFound("the value is not found in the list")
 
     #Time complexity: O(n) - linear time in size of list
@@ -246,25 +225,22 @@ class ArrayList:
         Can you use only helper functions that have already been implemented?
         If the value is not found in the list, raise NotFound()
         '''
-        try:
-            if self.is_ordered():
-                index = self.binary_search(value)
-                if index is not None:
-                    self.remove_at(index)
-                else:
-                    raise NotFound("the value is not found in the list")
-            
+        if self.is_ordered():
+            index = self.binary_search(value)
+            if index is not None:
+                self.remove_at(index)
             else:
-                found = False
-                for index in range(0, self.size - 1):
-                    if self.arr[index] == value:
-                        self.remove_at(index)
-                        found = True
-                        break
-                    if not found:
-                        raise NotFound("the value is not found in the list")
-        except NotFound:
-            raise NotFound("the value is not found in the list")
+                raise NotFound("the value is not found in the list")
+        
+        else:
+            found = False
+            for index in range(0, self.size - 1):
+                if self.arr[index] == value:
+                    self.remove_at(index)
+                    found = True
+                    break
+                if not found:
+                    raise NotFound("the value is not found in the list")
 
 
 def modulus(a, b):
@@ -302,6 +278,7 @@ def how_many(lis1, lis2):
 
 
 if __name__ == "__main__":
+    pass
     # add your tests here or in a different file.
     # Do not add them outside this if statement
     # and make sure they are at this indent level

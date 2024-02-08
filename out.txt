@@ -3403,70 +3403,70 @@ current list: 17, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, No
 current list: 17, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert_ordered 24
-The list is not ordered
+current list: 17, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 56 1
-current list: 17, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 17, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 90 1
-current list: 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 99 0
-current list: 99, 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 97 0
-current list: 97, 99, 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 97, 99, 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 99 0
-current list: 99, 97, 99, 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 97, 99, 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 26 1
-current list: 99, 26, 97, 99, 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 70 4
-current list: 99, 26, 97, 99, 70, 17, 90, 56, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 56, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 74 9
-current list: 99, 26, 97, 99, 70, 17, 90, 56, 41, 74, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 56, 24, 74, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 95 7
-current list: 99, 26, 97, 99, 70, 17, 90, 95, 56, 41, 74, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 95, 56, 24, 74, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 62 11
-current list: 99, 26, 97, 99, 70, 17, 90, 95, 56, 41, 74, 62, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 95, 56, 24, 74, 62, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 78 8
-current list: 99, 26, 97, 99, 70, 17, 90, 95, 78, 56, 41, 74, 62, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 95, 78, 56, 24, 74, 62, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 82 8
-current list: 99, 26, 97, 99, 70, 17, 90, 95, 82, 78, 56, 41, 74, 62, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 95, 82, 78, 56, 24, 74, 62, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 41 14
-current list: 99, 26, 97, 99, 70, 17, 90, 95, 82, 78, 56, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 99, 70, 17, 90, 95, 82, 78, 56, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 76 3
-current list: 99, 26, 97, 76, 99, 70, 17, 90, 95, 82, 78, 56, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 76, 99, 70, 17, 90, 95, 82, 78, 56, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 96 10
-current list: 99, 26, 97, 76, 99, 70, 17, 90, 95, 82, 96, 78, 56, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 76, 99, 70, 17, 90, 95, 82, 96, 78, 56, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 56 8
-current list: 99, 26, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 69 14
-current list: 99, 26, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 50 2
-current list: 99, 26, 50, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 50, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 96 3
-current list: 99, 26, 50, 96, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 50, 96, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert 27 3
-current list: 99, 26, 50, 27, 96, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 41, 74, 62, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
+current list: 99, 26, 50, 27, 96, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     insert_ordered 16
-The list is not ordered
+current list: 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 99, 26, 50, 27, 96, 97, 76, 99, 70, 17, 90, 56, 95, 82, 96, 78, 56, 69, 24, 74, 62, 41, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 41, 87, 72, 40, 64, 57, 82, 23, 33, 86, 19, 27, 33, 47, 74, 12, None, None, 86
 
     new int
 current list: 
@@ -3569,3 +3569,405 @@ current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76
 
     find 22
 current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    find 11
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    find 21
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+index of value: 19 | value at index: 21
+
+    find 21
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+index of value: 19 | value at index: 21
+
+    find 23
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+index of value: 30 | value at index: 23
+
+    find 14
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    find 27
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    find 29
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+index of value: 20 | value at index: 29
+
+    find 15
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    find 19
+current list: 44, 28, 41, 93, 34, 83, 52, 85, 34, 74, 65, 78, 43, 10, 39, 13, 76, 33, 44, 21, 29, 16, 91, 95, 82, 96, 38, 73, 26, 86, 23, 23
+Value not found in list
+
+    remove_value 10
+Value not found in list
+
+    remove_value 22
+Value not found in list
+
+    remove_value 24
+Value not found in list
+
+    remove_value 18
+Value not found in list
+
+    remove_value 29
+Value not found in list
+
+    remove_value 20
+Value not found in list
+
+    remove_value 29
+Value not found in list
+
+    remove_value 12
+Value not found in list
+
+    remove_value 21
+Value not found in list
+
+    remove_value 22
+Value not found in list
+
+    clear
+current list: 
+
+    insert_ordered 29
+current list: 
+
+    insert_ordered 18
+current list: 
+
+    insert_ordered 28
+current list: 
+
+    insert_ordered 13
+current list: 
+
+    insert_ordered 22
+current list: 
+
+    insert_ordered 29
+current list: 
+
+    insert_ordered 28
+current list: 
+
+    insert_ordered 14
+current list: 
+
+    insert_ordered 13
+current list: 
+
+    insert_ordered 10
+current list: 
+
+    insert_ordered 19
+current list: 
+
+    insert_ordered 18
+current list: 
+
+    insert_ordered 24
+current list: 
+
+    insert_ordered 24
+current list: 
+
+    insert_ordered 21
+current list: 
+
+    insert_ordered 23
+current list: 
+
+    insert_ordered 22
+current list: 
+
+    insert_ordered 21
+current list: 
+
+    insert_ordered 12
+current list: 
+
+    insert_ordered 30
+current list: 
+
+    insert_ordered 29
+current list: 
+
+    insert_ordered 23
+current list: 
+
+    insert_ordered 18
+current list: 
+
+    insert_ordered 11
+current list: 
+
+    insert_ordered 27
+current list: 
+
+    insert_ordered 16
+current list: 
+
+    insert_ordered 28
+current list: 
+
+    insert_ordered 13
+current list: 
+
+    insert_ordered 15
+current list: 
+
+    insert_ordered 15
+current list: 
+
+    insert_ordered 29
+current list: 
+
+    insert_ordered 25
+current list: 
+
+    find 13
+current list: 
+Value not found in list
+
+    find 25
+current list: 
+Value not found in list
+
+    find 26
+current list: 
+Value not found in list
+
+    find 22
+current list: 
+Value not found in list
+
+    find 25
+current list: 
+Value not found in list
+
+    find 16
+current list: 
+Value not found in list
+
+    find 24
+current list: 
+Value not found in list
+
+    find 13
+current list: 
+Value not found in list
+
+    find 30
+current list: 
+Value not found in list
+
+    find 28
+current list: 
+Value not found in list
+
+    remove_value 21
+Value not found in list
+
+    remove_value 26
+Value not found in list
+
+    remove_value 23
+Value not found in list
+
+    remove_value 21
+Value not found in list
+
+    remove_value 10
+Value not found in list
+
+    remove_value 28
+Value not found in list
+
+    remove_value 10
+Value not found in list
+
+    remove_value 26
+Value not found in list
+
+    remove_value 24
+Value not found in list
+
+    remove_value 28
+Value not found in list
+
+    insert 11 1
+current list: 44
+
+    insert 33 11
+current list: 44, 11
+
+    insert 73 20
+current list: 44, 11, 41
+
+    insert 84 9
+current list: 44, 11, 41, 93
+
+    insert 84 28
+current list: 44, 11, 41, 93, 34
+
+    insert 49 10
+current list: 44, 11, 41, 93, 34, 83
+
+    insert 77 13
+current list: 44, 11, 41, 93, 34, 83, 52
+
+    insert 96 29
+current list: 44, 11, 41, 93, 34, 83, 52, 85
+
+    insert 10 21
+current list: 44, 11, 41, 93, 34, 83, 52, 85, 34
+
+    insert 66 13
+current list: 44, 11, 41, 93, 34, 83, 52, 85, 34, 84
+
+    insert 69 12
+current list: 44, 11, 41, 93, 34, 83, 52, 85, 34, 84, 49
+
+    insert 79 13
+current list: 44, 11, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33
+
+    insert 17 2
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33
+
+    insert 42 22
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33, 79
+
+    insert 14 32
+Index out of bounds!
+
+    insert 17 18
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33, 79, 39
+
+    insert 37 40
+Index out of bounds!
+
+    insert 45 28
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33, 79, 39, 13
+
+    insert 47 26
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 85, 34, 84, 49, 33, 79, 39, 13, 76
+
+    insert 82 8
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 39, 13, 76
+
+    insert 13 42
+Index out of bounds!
+
+    insert 62 15
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 62, 39, 13, 76
+
+    insert 30 31
+current list: 44, 11, 17, 41, 93, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 62, 39, 13, 76, 21
+
+    insert 31 39
+Index out of bounds!
+
+    insert 69 33
+Index out of bounds!
+
+    insert 42 5
+current list: 44, 11, 17, 41, 93, 42, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 62, 39, 13, 76, 21
+
+    insert 36 36
+Index out of bounds!
+
+    insert 56 6
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 62, 39, 13, 76, 21
+
+    insert 87 27
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 79, 62, 39, 13, 76, 21, 42
+
+    insert 63 16
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+
+    insert 93 39
+Index out of bounds!
+
+    insert 70 48
+Index out of bounds!
+
+    find 22
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 17
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+index of value: 2 | value at index: 17
+
+    find 11
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+index of value: 1 | value at index: 11
+
+    find 15
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 28
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 26
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 25
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 26
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 24
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    find 25
+current list: 44, 11, 17, 41, 93, 42, 56, 34, 83, 52, 82, 85, 34, 84, 49, 33, 63, 79, 62, 39, 13, 76, 21, 42
+Value not found in list
+
+    remove_value 29
+Value not found in list
+
+    remove_value 23
+Value not found in list
+
+    remove_value 24
+Value not found in list
+
+    remove_value 23
+Value not found in list
+
+    remove_value 19
+Value not found in list
+
+    remove_value 14
+Value not found in list
+
+    remove_value 26
+Value not found in list
+
+    remove_value 22
+Value not found in list
+
+    remove_value 12
+Value not found in list
+
+    remove_value 23
+Value not found in list

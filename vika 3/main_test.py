@@ -1,5 +1,4 @@
-import hópverkefni
-from hópverkefni import *
+from hópverkefni import IndexOutOfBounds, NotFound, Empty, NotOrdered, ArrayList
 import sys
 import shlex
 
