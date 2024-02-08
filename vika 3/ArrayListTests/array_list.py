@@ -16,7 +16,6 @@ class ArrayList:
         self.arr = [None] * self.capacity
         self.size = 0
     
-
     #Time complexity: O(n) - linear time in size of list
     def __str__(self):
         return_string = ""
@@ -37,7 +36,6 @@ class ArrayList:
         '''
         return self.insert(value, 0)
 
-        
     #Time complexity: O(n) - linear time in size of list
     def insert(self, value, index):
         '''
@@ -111,7 +109,7 @@ class ArrayList:
         '''
 
         try:
-            if index < 0 or index > self.size - 1:
+            if index < 0 or index > self.size:
                 raise IndexOutOfBounds("the index is not within the current list")
 
             return self.arr[index]            
@@ -155,17 +153,14 @@ class ArrayList:
         Removes from the list an item at a specific location
         If the index is not within the current list, raise IndexOutOfBounds()
         '''
-        try:
-            if index < 0 or index > self.size - 1:
-                raise IndexOutOfBounds("the index is not within the current list")
-            
-            for i in range(index, self.size - 1):
-                self.arr[i] = self.arr[i + 1]
-            
-            self.size -= 1
-        except IndexOutOfBounds:
-            raise IndexOutOfBounds("the index is not within the current list")        
-
+        if index < 0 or index > self.size - 1:
+            raise IndexOutOfBounds("the index is not within the current list")
+        
+        for i in range(index, self.size - 1):
+            self.arr[i] = self.arr[i + 1]
+        
+        self.size -= 1
+        
     #Time complexity: O(1) - constant time
     def clear(self):
         '''
@@ -311,7 +306,7 @@ if __name__ == "__main__":
         print(arr_list.get_at(1))
 
         print(arr_list)
-        arr_list.remove_at(1)
+        arr_list.remove_at(7)
         print(arr_list)
 
         arr_list.append(57)

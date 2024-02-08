@@ -1,4 +1,5 @@
-from array_list import ArrayList, IndexOutOfBounds, Empty, NotOrdered, NotFound
+from array_list import ArrayList
+from array_list import *
 import sys
 import shlex
 
