@@ -1,0 +1,87 @@
+class Node:
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+    
+    def __str__(self):
+        return str(self.data)
+    
+class Stack:
+    def __init__(self):
+        self.top = None
+        self.size = 0
+
+    def push(self, data):
+        '''
+        Implement a function that 
+        adds to the top of the stack
+        '''
+        new_node = Node(data, self.top)
+        self.top = new_node
+        self.size += 1
+        
+    def pop(self):
+        '''
+        Implement a function that 
+        returns data from and removes the top
+        '''
+        if self.top is None:
+            return None
+        value = self.top.data
+        self.top = self.top.next
+        self.size -= 1
+        return value
+
+    def get_size(self):
+        '''
+        returns the number of items
+        currently on the stack
+        '''
+        return self.size
+
+    def __str__(self):
+        ret_str = ""
+        node = self.top
+        while node is not None:
+            ret_str += str(node.data) + " "
+            node = node.next
+        return ret_str    
+
+stack = Stack()
+stack.push(3)
+stack.push(5)
+stack.push(7)
+print(stack)
+stack.pop()
+print(stack)
+
+class Queue:
+    def __init__(self):
+        self.front = self.rear = None
+        self.size = 0
+
+    def push(self, data):
+        '''
+        Implement a function that
+        adds to the back of the queue
+        '''
+        pass
+
+    def pop(self):
+        '''
+        Implement a function that
+        returns data from and removes the front
+        '''
+        pass
+
+    def get_size(self):
+        '''
+        It returns the number of items
+        currently in the queue
+        '''
+        return self.size
+
+    def __str__(self):
+        pass
+
+
