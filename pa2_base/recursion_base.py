@@ -11,12 +11,47 @@ def print_to_screen(head):
         print("")
 
 def get_size(head):
-    return 0
+    '''
+    Takes in the head of a list as a parameter
+    Returns the size of the list
+    '''
+    temp_node = head
+    if temp_node == None:
+        return 0
+    return 1 + get_size(temp_node.next)
 
 def reverse_list(head):
-    return head
+    '''
+    Takes in the head of a list as a parameter
+    returns a node, the head of a list that has the same items as the previous
+    list, but in reverse order.
+    '''
+    if head is None or head.next is None:
+        return head
+    
+    reversed = reverse_list(head.next)
+
+    head.next.next = head
+
+    head.next = None
+
+    return reversed
 
 def palindrome(head):
+    '''
+    ○ Takes in the head of a list as a parameter
+    ○ Returns True if the list is a palindrome
+        ■ A list is a palindrome if it is the same reading it forwards and backwards.
+            ● Example: abba, level and radar are palindromes
+            ● While adba is not a palindrome
+        ■ Since we are using lists instead of strings imagine that every node in the
+          list holds a single character
+    ○ Otherwise returns False
+    ○ This can be done with more than one separate recursive calls that may initialize
+      new instances of Node, or move data around. As long as all runs through the
+      list/lists are recursive, and the original list sent in is not broken in any way, full
+      marks will be given.
+    '''
     return True
 
 if __name__ == "__main__":
