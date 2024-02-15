@@ -6,17 +6,30 @@ class Queue:
         # Pick one of these to use.
         # Stack must have the container you dont choose for Queue
         
-        #self.container = LinkedList()
+        self.container = LinkedList()
         #self.container = ArrayDeque()
 
     def add(self, data):
-        pass
+        '''
+        Takes a parameter and adds its value 
+        to the back of the queue
+        '''
+        return self.container.push_back(data)
     
     def remove(self):
-        pass
+        '''
+        Removes the item off the front of the queue and 
+        returns its value
+            ■ If the queue is empty, return None
+        '''
+        return self.container.pop_front()
 
     def get_size(self):
-        return 0
+        '''
+        Returns the number of items 
+        currently in the queue
+        '''
+        return self.container.size
 
     def __str__(self):
-        return ""
+        return self.container.__str__()
