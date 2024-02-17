@@ -26,14 +26,16 @@ def reverse_list(head):
     returns a node, the head of a list that has the same items as the previous
     list, but in reverse order.
     '''
-    if head is None or head.next is None:
-        return head
+    temp_node = head
+
+    if temp_node == None or temp_node.next == None:
+        return temp_node
     
-    reversed = reverse_list(head.next)
+    reversed = reverse_list(temp_node.next)
 
-    head.next.next = head
+    temp_node.next.next = temp_node
 
-    head.next = None
+    temp_node.next = None
 
     return reversed
 
@@ -52,10 +54,27 @@ def palindrome(head):
       list/lists are recursive, and the original list sent in is not broken in any way, full
       marks will be given.
     '''
-    return True
+    def is_palindrome_recursive(right):
+        nonlocal left
+        if right is None:
+            return True
+        
+        is_pal = is_palindrome_recursive(right.next)
+        
+        is_pal = is_pal and left.data == right.data
+        
+        left = left.next
+        
+        return is_pal
+    
+    if head is None or head.next is None:
+        return True
+    
+    left = head
+    return is_palindrome_recursive(head)
 
 if __name__ == "__main__":
-    ##
+    #
     print("GET_SIZE TESTS")
     print("\n")
     head = Node("A", Node("E", Node("L", Node("E", Node("A", None)))))
@@ -82,7 +101,7 @@ if __name__ == "__main__":
     print_to_screen(head)
 
 
-    ##
+    #
     print("REVERSE TESTS")
     print("\n")
     head = Node("A", Node("B", Node("C", Node("D", Node("E", None)))))
