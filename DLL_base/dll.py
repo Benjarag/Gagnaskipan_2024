@@ -34,13 +34,18 @@ class DLL:
             ■ The node behind the removed node is 
               now in the current position
         '''
-        if self.current != self.header and self.current != self.tailer:
-            self.current.next.prev = self.current.prev
+        if self.current and self.current.prev and self.current.next:
             self.current.prev.next = self.current.next
-
+            self.current.next.prev = self.current.prev
             self.current = self.current.next
-
             self.size -= 1
+        # if self.current != self.header and self.current != self.tailer:
+        #     self.current.next.prev = self.current.prev
+        #     self.current.prev.next = self.current.next
+
+        #     self.current = self.current.next
+
+        #     self.size -= 1
 
     def get_value(self):
         '''
@@ -63,9 +68,18 @@ class DLL:
         Moves the current position one item closer to the head/header
             ■ Do nothing if at beginning
         '''
-        if self.current.prev is not None:
+        if self.current.prev == None:
+            
+            if self.header.next:
+                self.current = self.header.next
+                return
+            else:
+                return
+        else:
             self.current = self.current.prev
-
+            if self.current.prev == None:
+                self.current = self.header.next
+            return
     def move_to_pos(self, pos):
         '''
         Moves the current position to item #position in the list
@@ -173,29 +187,102 @@ class DLL:
     
 
 if __name__ == "__main__":
+    import sys
     #create tests here if you want
-    dll = DLL()
-
-    # Test insertion
-    dll.insert(5)
-    dll.insert(10)
-    dll.insert(15)
-    print("Doubly Linked List after insertion:", dll)
-
-    # Test removal
-    dll.remove()
-    print("Doubly Linked List after removal:", dll)
-
-    print(dll.get_value())
-    dll.move_to_pos(0)
-    print(dll.get_value())
-
-
-    print(dll.get_first_node().data)
-    print(len(dll))
-    print(dll.size)
+    orig_stdout = sys.stdout
+    fout = open('out.txt', 'w+')
     
-    print(dll.get_last_node())
+    # sys.stdout = fout
+
+
+    print("\n\nTESTING THE BASIC STUFF\n")
+
+    dll = DLL()
+    print(str(dll) + "   -1   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -2   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B")
+    print(str(dll) + "   -3   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -4   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("D")
+    print(str(dll) + "   -5   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("E")
+    print(str(dll) + "   -6   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -7   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -8   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("1")
+    print(str(dll) + "   -9   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("2")
+    print(str(dll) + "   -10   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -11   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("3")
+    print(str(dll) + "   -12   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("4")
+    print(str(dll) + "   -13   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -14   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("VALUE")
+    print(str(dll) + "   -15   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(8)
+    print(str(dll) + "   -16   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -17   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -18   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -19   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(2)
+    print(str(dll) + "   -20   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -21   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -22   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -23   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -24   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -25   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -26   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -27   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -28   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -29   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -30   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -31   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -32   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -33   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -34   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -35   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -36   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(-1)
+    print(str(dll) + "   -37   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(18)
+    print(str(dll) + "   -38   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(0)
+    print(str(dll) + "   -39   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -40   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -41   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -42   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -43   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
 
 
     
