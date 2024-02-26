@@ -49,44 +49,44 @@ C    -   current value: C   -   size: 1
 
 TESTING MORE COMPLEX STUFF
 
-   -   current value: None   -   size: 0
-A    -   current value: A   -   size: 1
-B1 A    -   current value: B1   -   size: 2
-C B1 A    -   current value: C   -   size: 3
-A C B1 A    -   current value: A   -   size: 4
-B2 A C B1 A    -   current value: B2   -   size: 5
-A B1 A B2 C    -   current value: B2   -   size: 5
-A B1 A C B2 C    -   current value: C   -   size: 6
-A B1 A A C B2 C    -   current value: A   -   size: 7
+   -1   current value: None   -   size: 0
+A    -2   current value: A   -   size: 1
+B1 A    -3   current value: B1   -   size: 2
+C B1 A    -4   current value: C   -   size: 3
+A C B1 A    -5   current value: A   -   size: 4
+B2 A C B1 A    -6   current value: B2   -   size: 5
+A B1 A B2 C    -7   current value: B2   -   size: 5
+A B1 A C B2 C    -8   current value: C   -   size: 6
+A B1 A A C B2 C    -9   current value: A   -   size: 7
 first node:  A
-A B1 A A C B2 C    -   current value: A   -   size: 7
-A B1 A B3 A C B2 C    -   current value: B3   -   size: 8
-A B1 A C B3 A C B2 C    -   current value: C   -   size: 9
+A B1 A A C B2 C    -10   current value: A   -   size: 7
+A B1 A B3 A C B2 C    -11   current value: B3   -   size: 8
+A B1 A C B3 A C B2 C    -12   current value: C   -   size: 9
 last node:  C
-A B1 A C B3 A C B2 C    -   current value: C   -   size: 9
-A B1 A C B3 A C B2 C    -   current value: A   -   size: 9
-B5 A B1 A C B3 A C B2 C    -   current value: B5   -   size: 10
-B5 A B1 A C B3 A C B2 C    -   current value: C   -   size: 10
-A B1 A B3 A B2 B5 C C C    -   current value: B5   -   size: 10
-A A A B1 B2 B3 B5 C C C    -   current value: A   -   size: 10
-   -   current value: None   -   size: 0
-B    -   current value: B   -   size: 1
-D B    -   current value: D   -   size: 2
-G D B    -   current value: G   -   size: 3
-T G D B    -   current value: T   -   size: 4
-A T G D B    -   current value: A   -   size: 5
-C A T G D B    -   current value: C   -   size: 6
-B C A T G D B    -   current value: B   -   size: 7
-B C A T G D B    -   current value: C   -   size: 7
-B A T G D B    -   current value: A   -   size: 6
-B T G D B    -   current value: T   -   size: 5
-B G D B    -   current value: G   -   size: 4
-B D B    -   current value: D   -   size: 3
+A B1 A C B3 A C B2 C    -13   current value: C   -   size: 9
+A B1 A C B3 A C B2 C    -14   current value: A   -   size: 9
+B5 A B1 A C B3 A C B2 C    -15   current value: B5   -   size: 10
+B5 A B1 A C B3 A C B2 C    -16   current value: C   -   size: 10
+A B1 A B3 A B2 B5 C C C    -17   current value: B5   -   size: 10
+A A A B1 B2 B3 B5 C C C    -18   current value: A   -   size: 10
+   -19   current value: None   -   size: 0
+B    -20   current value: B   -   size: 1
+D B    -21   current value: D   -   size: 2
+G D B    -22   current value: G   -   size: 3
+T G D B    -23   current value: T   -   size: 4
+A T G D B    -24   current value: A   -   size: 5
+C A T G D B    -25   current value: C   -   size: 6
+B C A T G D B    -26   current value: B   -   size: 7
+B C A T G D B    -27   current value: C   -   size: 7
+B A T G D B    -28   current value: A   -   size: 6
+B T G D B    -29   current value: T   -   size: 5
+B G D B    -30   current value: G   -   size: 4
+B D B    -31   current value: D   -   size: 3
 first node:  B
-B D B    -   current value: D   -   size: 3
-B D B    -   current value: B   -   size: 3
-B D B    -   current value: B   -   size: 3
-D B    -   current value: D   -   size: 2
+B D B    -32   current value: D   -   size: 3
+B D B    -33   current value: B   -   size: 3
+B D B    -34   current value: B   -   size: 3
+D B    -35   current value: D   -   size: 2
 last node:  B
-D B    -   current value: D   -   size: 2
-   -   current value: None   -   size: 0
+D B    -36   current value: D   -   size: 2
+   -37   current value: None   -   size: 0

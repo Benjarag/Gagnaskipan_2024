@@ -11,65 +11,72 @@ def print_to_screen(head):
         print("")
 
 def get_size(head):
-    '''
-    Takes in the head of a list as a parameter
-    Returns the size of the list
-    '''
-    temp_node = head
-    if temp_node == None:
+    if head == None:
         return 0
-    return 1 + get_size(temp_node.next)
+    return 1 + get_size(head.next)
+
+# def copy_list(head):
+#     if head == None:
+#         return None
+#     return Node(head.data, copy_list(head.next))
 
 def reverse_list(head):
-    '''
-    Takes in the head of a list as a parameter
-    returns a node, the head of a list that has the same items as the previous
-    list, but in reverse order.
-    '''
     if head == None or head.next == None:
         return head
-    
-    reversed = reverse_list(head.next)
-
+    node = reverse_list(head.next)
     head.next.next = head
-
     head.next = None
+    return node
 
-    return reversed
+##def compare_lists(head1, head2):
+##    if head1 == None and head2 == None:
+##        return True
+##    if head1.data != head2.data:
+##        return False
+##    return compare_lists(head1.next, head2.next)
+
+
+# def palindrome(head):
+#     head2 = copy_list(head)
+#     head2 = reverse_list(head2)
+#     return compare_lists(head, head2)
+
+# ONE PASS RECURSIVE SOLUTION - NO REALLOCATION
+# SOLUTION FROM VIDEO
+class Palindrome:
+    def __init__(self, head):
+        self.head = head
+    
+    def palindrome(self, tail):
+        if tail == None:
+            return True
+        if self.palindrome(tail.next):
+            if self.head.data == tail.data:
+                self.head = self.head.next
+                return True
+        return False
 
 def palindrome(head):
-    '''
-    ○ Takes in the head of a list as a parameter
-    ○ Returns True if the list is a palindrome
-        ■ A list is a palindrome if it is the same reading it forwards and backwards.
-            ● Example: abba, level and radar are palindromes
-            ● While adba is not a palindrome
-        ■ Since we are using lists instead of strings imagine that every node in the
-          list holds a single character
-    ○ Otherwise returns False
-    ○ This can be done with more than one separate recursive calls that may initialize
-      new instances of Node, or move data around. As long as all runs through the
-      list/lists are recursive, and the original list sent in is not broken in any way, full
-      marks will be given.
-    '''
-    def is_palindrome_recursive(right):
-        nonlocal left
-        if right is None:
-            return True
-        
-        is_pal = is_palindrome_recursive(right.next)
-        is_pal = is_pal and left.data == right.data
-        left = left.next
-        return is_pal
-    
-    if head is None or head.next is None:
-        return True
-    
-    left = head
-    return is_palindrome_recursive(head)
+    pal = Palindrome(head)
+    return pal.palindrome(head)
+
+# # ONE PASS RECURSIVE SOLUTION - NO REALLOCATION
+# def palindrome_recur(node1, node2):
+#     if node2 == None:
+#         return True
+#     if palindrome_recur(node1, node2.next):
+#         if node1[0].data == node2.data:
+#             node1[0] = node1[0].next
+#             return True
+#     return False
+
+# def palindrome(head):
+#     if head == None or head.next == None:
+#         return True
+#     return palindrome_recur([head], head)
 
 if __name__ == "__main__":
-    #
+    ##
     print("GET_SIZE TESTS")
     print("\n")
     head = Node("A", Node("E", Node("L", Node("E", Node("A", None)))))
@@ -96,7 +103,7 @@ if __name__ == "__main__":
     print_to_screen(head)
 
 
-    #
+    ##
     print("REVERSE TESTS")
     print("\n")
     head = Node("A", Node("B", Node("C", Node("D", Node("E", None)))))
@@ -165,3 +172,4 @@ if __name__ == "__main__":
     print_to_screen(head)
 
     print("\n")
+

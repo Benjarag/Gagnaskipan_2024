@@ -73,36 +73,36 @@ def test_dll(fin):
             test_print(dll)
         elif cmd[0] == "insert":
             test_insert(dll, int(cmd[1]))
-        elif cmd[0] == "remove":
-            test_remove(dll)
-        elif cmd[0] == "move_to_next":
-            test_move_to_next(dll)
-        elif cmd[0] == "move_to_prev":
-            test_move_to_prev(dll)
-        elif cmd[0] == "move_to_pos":
-            test_move_to_pos(dll, int(cmd[1]))
-        elif cmd[0] == "get_first_node":
-            test_get_first_node(dll)
-        elif cmd[0] == "get_last_node":
-            test_get_last_node(dll)
-        elif cmd[0] == "clear":
-            test_clear(dll)
-        elif cmd[0] == "sort":
-            test_sort(dll)
-        elif cmd[0] == "partition":
-            test_partition(dll)
+        # elif cmd[0] == "remove":
+        #     test_remove(dll)
+        # elif cmd[0] == "move_to_next":
+        #     test_move_to_next(dll)
+        # elif cmd[0] == "move_to_prev":
+        #     test_move_to_prev(dll)
+        # elif cmd[0] == "move_to_pos":
+        #     test_move_to_pos(dll, int(cmd[1]))
+        # elif cmd[0] == "get_first_node":
+        #     test_get_first_node(dll)
+        # elif cmd[0] == "get_last_node":
+        #     test_get_last_node(dll)
+        # elif cmd[0] == "clear":
+        #     test_clear(dll)
+        # elif cmd[0] == "sort":
+        #     test_sort(dll)
+        # elif cmd[0] == "partition":
+        #     test_partition(dll)
 
 def main():
 
     orig_stdout = sys.stdout
     fout = open('out.txt', 'w+')
-    sys.stdout = fout
+    # sys.stdout = fout
 
     fin = open("tests.txt")
 
     test_dll(fin)
 
-    sys.stdout = orig_stdout
+    # sys.stdout = orig_stdout
     fout.close()
 
 
