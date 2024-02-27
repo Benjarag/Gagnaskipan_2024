@@ -45,7 +45,6 @@ class LinkedList():
             self.size += 1
             return
         
-        
         current = self.front
         while current.next:
             current = current.next

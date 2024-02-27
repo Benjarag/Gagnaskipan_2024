@@ -26,6 +26,9 @@ class DLL:
         of the node at the current position
             ■ The new node is now in the current position
         '''
+        # ef current er head þá er ekki hægt að setja það fyrir framan current
+        if self.current is self.header:
+            return
         new_node = Node(data, self.current.prev, self.current)
         new_node.prev.next = new_node
         new_node.next.prev = new_node
@@ -40,18 +43,15 @@ class DLL:
             ■ The node behind the removed node is 
               now in the current position
         '''
-        if self.current and self.current.prev and self.current.next:
+        # ef current er head eða tail þá er ekki hægt að fjarlægja það
+        if self.current is self.header or self.current is self.tailer:
+            return     
+        elif self.current and self.current.prev and self.current.next:
             self.current.prev.next = self.current.next
             self.current.next.prev = self.current.prev
             self.current = self.current.next
             self.size -= 1
-        # if self.current != self.header and self.current != self.tailer:
-        #     self.current.next.prev = self.current.prev
-        #     self.current.prev.next = self.current.next
-
-        #     self.current = self.current.next
-
-        #     self.size -= 1
+        return
 
     def get_value(self):
         '''
@@ -75,7 +75,6 @@ class DLL:
             ■ Do nothing if at beginning
         '''
         if self.current.prev == None:
-            
             if self.header.next:
                 self.current = self.header.next
                 return
@@ -169,7 +168,6 @@ class DLL:
             high.data = low.data
         low.data = pivot
         self.current = low
-
         return
 
     # def quicksort(self, low, high):
