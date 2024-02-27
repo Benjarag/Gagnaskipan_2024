@@ -78,7 +78,7 @@ def create_dll(complex = False):
 def main():
     orig_stdout = sys.stdout
     fout = open('tests.txt', 'w+')
-    sys.stdout = fout
+    # sys.stdout = fout
 
     for _ in range(30):
         create_dll()
@@ -86,7 +86,7 @@ def main():
     for _ in range(30):
         create_dll(True)
 
-    sys.stdout = orig_stdout
+    # sys.stdout = orig_stdout
     fout.close()
 
 

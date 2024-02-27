@@ -3,7 +3,6 @@ ATH!!
 Það var ekki hægt að testa stronger_tests en þetta er þessi kóði er réttur fyrir weaker_tests, vegna þess ég copyaði testin frá weaker_tests.py
 Það væri fínt að fá annaðhvort hjálp við að laga þetta hjá mér vegna þess að þetta er buið að gerast í öllum verkefnunum eða að þið gerið test sem er alltaf hægt að copya
 reyndi að fá hjálp með því að senda email á kennrann og æi gegnum piazza en það gekk ekki
-
 '''
 
 class Node:
@@ -173,9 +172,17 @@ class DLL:
 
         return
 
-    def sort(self):
-        self.quick_sort(self.get_first_node(), self.get_last_node())
-        self.current = self.head
+    # def quicksort(self, low, high):
+    #     if low and high and low != high and low.prev != high:
+    #         pivot = self.partition(low, high)
+    #         if pivot != self.head:
+    #             self.quicksort(low, pivot.prev)
+    #         if pivot != self.tail:
+    #             self.quicksort(pivot.next, high)
+
+    # def sort(self):
+    #     self.quick_sort(self.get_first_node(), self.get_last_node())
+    #     self.current = self.head
         
         # while low != high:
         #     while low != high and high.data >= pivot:

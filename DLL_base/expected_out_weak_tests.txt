@@ -2,49 +2,49 @@
 
 TESTING THE BASIC STUFF
 
-   -   current value: None   -   size: 0
-A    -   current value: A   -   size: 1
-B A    -   current value: B   -   size: 2
-C B A    -   current value: C   -   size: 3
-D C B A    -   current value: D   -   size: 4
-E D C B A    -   current value: E   -   size: 5
-E D C B A    -   current value: D   -   size: 5
-E D C B A    -   current value: C   -   size: 5
-E D 1 C B A    -   current value: 1   -   size: 6
-E D 2 1 C B A    -   current value: 2   -   size: 7
-E D 2 1 C B A    -   current value: 1   -   size: 7
-E D 2 3 1 C B A    -   current value: 3   -   size: 8
-E D 2 4 3 1 C B A    -   current value: 4   -   size: 9
-E D 2 4 3 1 C B A    -   current value: 2   -   size: 9
-E D VALUE 2 4 3 1 C B A    -   current value: VALUE   -   size: 10
-E D VALUE 2 4 3 1 C B A    -   current value: B   -   size: 10
-E D VALUE 2 4 3 1 C A    -   current value: A   -   size: 9
-E D VALUE 2 4 3 1 C    -   current value: None   -   size: 8
-E D VALUE 2 4 3 1 C    -   current value: None   -   size: 8
-E D VALUE 2 4 3 1 C    -   current value: VALUE   -   size: 8
-E D 2 4 3 1 C    -   current value: 2   -   size: 7
-E D 4 3 1 C    -   current value: 4   -   size: 6
-E D 3 1 C    -   current value: 3   -   size: 5
-E D 3 1 C    -   current value: D   -   size: 5
-E D 3 1 C    -   current value: E   -   size: 5
-E D 3 1 C    -   current value: E   -   size: 5
-E D 3 1 C    -   current value: E   -   size: 5
-E D 3 1 C    -   current value: E   -   size: 5
-E D 3 1 C    -   current value: E   -   size: 5
-D 3 1 C    -   current value: D   -   size: 4
-3 1 C    -   current value: 3   -   size: 3
-3 1 C    -   current value: 1   -   size: 3
-3 1 C    -   current value: C   -   size: 3
-3 1 C    -   current value: None   -   size: 3
-3 1 C    -   current value: None   -   size: 3
-3 1 C    -   current value: None   -   size: 3
-3 1 C    -   current value: None   -   size: 3
-3 1 C    -   current value: None   -   size: 3
-3 1 C    -   current value: 3   -   size: 3
-1 C    -   current value: 1   -   size: 2
-C    -   current value: C   -   size: 1
-   -   current value: None   -   size: 0
-   -   current value: None   -   size: 0
+   -1   current value: None   -   size: 0
+A    -2   current value: A   -   size: 1
+B A    -3   current value: B   -   size: 2
+C B A    -4   current value: C   -   size: 3
+D C B A    -5   current value: D   -   size: 4
+E D C B A    -6   current value: E   -   size: 5
+E D C B A    -7   current value: D   -   size: 5
+E D C B A    -8   current value: C   -   size: 5
+E D 1 C B A    -9   current value: 1   -   size: 6
+E D 2 1 C B A    -10   current value: 2   -   size: 7
+E D 2 1 C B A    -11   current value: 1   -   size: 7
+E D 2 3 1 C B A    -12   current value: 3   -   size: 8
+E D 2 4 3 1 C B A    -13   current value: 4   -   size: 9
+E D 2 4 3 1 C B A    -14   current value: 2   -   size: 9
+E D VALUE 2 4 3 1 C B A    -15   current value: VALUE   -   size: 10
+E D VALUE 2 4 3 1 C B A    -16   current value: B   -   size: 10
+E D VALUE 2 4 3 1 C A    -17   current value: A   -   size: 9
+E D VALUE 2 4 3 1 C    -18   current value: None   -   size: 8
+E D VALUE 2 4 3 1 C    -19   current value: None   -   size: 8
+E D VALUE 2 4 3 1 C    -20   current value: VALUE   -   size: 8
+E D 2 4 3 1 C    -21   current value: 2   -   size: 7
+E D 4 3 1 C    -22   current value: 4   -   size: 6
+E D 3 1 C    -23   current value: 3   -   size: 5
+E D 3 1 C    -24   current value: D   -   size: 5
+E D 3 1 C    -25   current value: E   -   size: 5
+E D 3 1 C    -26   current value: E   -   size: 5
+E D 3 1 C    -27   current value: E   -   size: 5
+E D 3 1 C    -28   current value: E   -   size: 5
+E D 3 1 C    -29   current value: E   -   size: 5
+D 3 1 C    -30   current value: D   -   size: 4
+3 1 C    -31   current value: 3   -   size: 3
+3 1 C    -32   current value: 1   -   size: 3
+3 1 C    -33   current value: C   -   size: 3
+3 1 C    -34   current value: None   -   size: 3
+3 1 C    -35   current value: None   -   size: 3
+3 1 C    -36   current value: None   -   size: 3
+3 1 C    -37   current value: None   -   size: 3
+3 1 C    -38   current value: None   -   size: 3
+3 1 C    -39   current value: 3   -   size: 3
+1 C    -40   current value: 1   -   size: 2
+C    -41   current value: C   -   size: 1
+   -42   current value: None   -   size: 0
+   -43   current value: None   -   size: 0
 
 
 TESTING MORE COMPLEX STUFF
