@@ -95,7 +95,7 @@ class GeneralTree:
 
 
 # test here
-tree = BT_node()
+tree = BinaryTree()
 tree.populate_tree()
 tree.print_preorder()
 # tree.populate_G_tree()
