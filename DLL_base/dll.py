@@ -3,6 +3,7 @@ ATH!!
 Það var ekki hægt að testa stronger_tests en þetta er þessi kóði er réttur fyrir weaker_tests, vegna þess ég copyaði testin frá weaker_tests.py
 Það væri fínt að fá annaðhvort hjálp við að laga þetta hjá mér vegna þess að þetta er buið að gerast í öllum verkefnunum eða að þið gerið test sem er alltaf hægt að copya
 reyndi að fá hjálp með því að senda email á kennrann og æi gegnum piazza en það gekk ekki
+
 '''
 
 class Node:
@@ -26,9 +27,6 @@ class DLL:
         of the node at the current position
             ■ The new node is now in the current position
         '''
-        # ef current er head þá er ekki hægt að setja það fyrir framan current
-        if self.current is self.header:
-            return
         new_node = Node(data, self.current.prev, self.current)
         new_node.prev.next = new_node
         new_node.next.prev = new_node
@@ -43,15 +41,18 @@ class DLL:
             ■ The node behind the removed node is 
               now in the current position
         '''
-        # ef current er head eða tail þá er ekki hægt að fjarlægja það
-        if self.current is self.header or self.current is self.tailer:
-            return     
-        elif self.current and self.current.prev and self.current.next:
+        if self.current and self.current.prev and self.current.next:
             self.current.prev.next = self.current.next
             self.current.next.prev = self.current.prev
             self.current = self.current.next
             self.size -= 1
-        return
+        # if self.current != self.header and self.current != self.tailer:
+        #     self.current.next.prev = self.current.prev
+        #     self.current.prev.next = self.current.next
+
+        #     self.current = self.current.next
+
+        #     self.size -= 1
 
     def get_value(self):
         '''
@@ -75,6 +76,7 @@ class DLL:
             ■ Do nothing if at beginning
         '''
         if self.current.prev == None:
+            
             if self.header.next:
                 self.current = self.header.next
                 return
@@ -156,31 +158,32 @@ class DLL:
             low = self.get_first_node()
         if high is None:
             high = self.get_last_node()
+
         
         pivot = low.data
+        self.current = low
 
-        while low != high and low.prev != high:
-            while low != high and high.data > pivot:
-                high = high.prev
-            low.data = high.data
-            while low != high and low.data <= pivot:
-                low = low.next
-            high.data = low.data
-        low.data = pivot
+        node = self.header
+        length = len(self)
+        while node is not None and length > 0:
+            self.move_to_next()
+            pos_val = self.get_value()
+            if pos_val is None:
+                return
+            elif pos_val < pivot:
+                self.insert(pos_val)
+            else:
+                self.move_to_next()
+                self.insert(pos_val)
+                self.remove()
         self.current = low
         return
+       
+    
 
-    # def quicksort(self, low, high):
-    #     if low and high and low != high and low.prev != high:
-    #         pivot = self.partition(low, high)
-    #         if pivot != self.head:
-    #             self.quicksort(low, pivot.prev)
-    #         if pivot != self.tail:
-    #             self.quicksort(pivot.next, high)
-
-    # def sort(self):
-    #     self.quick_sort(self.get_first_node(), self.get_last_node())
-    #     self.current = self.head
+    def sort(self):
+        self.quick_sort(self.get_first_node(), self.get_last_node())
+        self.current = self.head
         
         # while low != high:
         #     while low != high and high.data >= pivot:
@@ -248,70 +251,209 @@ if __name__ == "__main__":
     # ● High is 13
     # ■ List after partition: 7 7 1 8 2 4 7 8 8 10 14 10 15 13 11 13
     # ---
-    # dll = DLL()
-    # print("TESTING\n")
-    # dll.insert("13")
-    # dll.insert("8")
-    # dll.insert("8")
-    # dll.insert("11")
-    # dll.insert("7")
-    # dll.insert("13")
-    # dll.insert("4")
-    # dll.insert("2")
-    # dll.insert("8")
-    # dll.insert("1")
-    # dll.insert("15")
-    # dll.insert("10")
-    # dll.insert("14")
-    # dll.insert("7")
-    # dll.insert("7")
-    # dll.insert("10")
-    # print("before partition: \n" + str(dll) + "  -1   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)) + "\n")
-    # dll.partition(dll.get_first_node(), dll.get_last_node())
-    # print("after partition: \n" + str(dll) + " after partition  -2   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)) + "\n")
-    # dll.clear()
-    # print("")
-    # ---
+    dll = DLL()
+    print("TESTING\n")
+    dll.insert("13")
+    dll.insert("8")
+    dll.insert("8")
+    dll.insert("11")
+    dll.insert("7")
+    dll.insert("13")
+    dll.insert("4")
+    dll.insert("2")
+    dll.insert("8")
+    dll.insert("1")
+    dll.insert("15")
+    dll.insert("10")
+    dll.insert("14")
+    dll.insert("7")
+    dll.insert("7")
+    dll.insert("10")
+    print("before partition: \n" + str(dll) + "  -1   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)) + "\n")
+    dll.partition(dll.get_first_node(), dll.get_last_node())
+    print("after partition: \n" + str(dll) + " after partition  -2   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)) + "\n")
+    dll.clear()
+    print("")
     
-    # # A B1 A B2 C    -7   current value: B2   -   size: 5
-    # dll.insert("C")
-    # print(str(dll) + "   -8   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A C B2 C    -8   current value: C   -   size: 6
-    # dll.insert("A")
-    # print(str(dll) + "   -9   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A A C B2 C    -9   current value: A   -   size: 7
-    # result = dll.get_first_node()
-    # if result != None:
-    #     result = result.data
-    # print("first node: ", str(result))
-    # # first node:  A
-    # print(str(dll) + "   -10   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A A C B2 C    -10   current value: A   -   size: 7
-    # dll.insert("B3")
-    # print(str(dll) + "   -11   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A B3 A C B2 C    -11   current value: B3   -   size: 8
-    # dll.insert("C")
-    # print(str(dll) + "   -12   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A C B3 A C B2 C    -12   current value: C   -   size: 9
-    # result = dll.get_last_node()
-    # if result != None:
-    #     result = result.data
-    # print("last node: ", str(result))
-    # # last node:  C
-    # print(str(dll) + "   -13   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A C B3 A C B2 C    -13   current value: C   -   size: 9
-    # dll.move_to_pos(0)
-    # print(str(dll) + "   -14   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A C B3 A C B2 C    -14   current value: A   -   size: 9
-    # dll.insert("B5")
-    # print(str(dll) + "   -15   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # B5 A B1 A C B3 A C B2 C    -15   current value: B5   -   size: 10
-    # dll.move_to_pos(4)
-    # print(str(dll) + "   -16   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # B5 A B1 A C B3 A C B2 C    -16   current value: C   -   size: 10
-    # dll.partition(dll.get_first_node(), dll.get_last_node())
-    # print(str(dll) + "   -17   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A B1 A B3 A B2 B5 C C C    -17   current value: B5   -   size: 10
-    # dll.sort()
-    # print(str(dll) + "   -18   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # # A A A B1 B2 B3 B5 C C C    -18   current value: A   -   size: 10
+    print("\n\nTESTING THE BASIC STUFF\n")
+    
+    dll = DLL()
+    print(str(dll) + "   -1   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -2   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B")
+    print(str(dll) + "   -3   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -4   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("D")
+    print(str(dll) + "   -5   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("E")
+    print(str(dll) + "   -6   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -7   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -8   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("1")
+    print(str(dll) + "   -9   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("2")
+    print(str(dll) + "   -10   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -11   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("3")
+    print(str(dll) + "   -12   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("4")
+    print(str(dll) + "   -13   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -14   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("VALUE")
+    print(str(dll) + "   -15   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(8)
+    print(str(dll) + "   -16   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -17   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -18   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -19   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(2)
+    print(str(dll) + "   -20   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -21   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -22   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -23   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -24   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -25   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -26   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -27   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -28   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -29   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -30   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -31   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -32   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -33   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -34   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -35   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -36   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(-1)
+    print(str(dll) + "   -37   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(18)
+    print(str(dll) + "   -38   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(0)
+    print(str(dll) + "   -39   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -40   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -41   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -42   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -43   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+
+
+    print("\n\nTESTING MORE COMPLEX STUFF\n")
+
+
+    dll = DLL()
+    print(str(dll) + "   -1   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -2   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B1")
+    print(str(dll) + "   -3   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -4   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -5   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B2")
+    print(str(dll) + "   -6   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.partition(dll.get_first_node(), dll.get_last_node())
+    print(str(dll) + "   -7   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -8   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -9   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_first_node()
+    if result != None:
+        result = result.data
+    print("first node: ", str(result))
+    print(str(dll) + "   -10   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B3")
+    print(str(dll) + "   -11   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -12   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_last_node()
+    if result != None:
+        result = result.data
+    print("last node: ", str(result))
+    print(str(dll) + "   -13   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(0)
+    print(str(dll) + "   -14   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B5")
+    print(str(dll) + "   -15   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_pos(4)
+    print(str(dll) + "   -16   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.partition(dll.get_first_node(), dll.get_last_node())
+    print(str(dll) + "   -17   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.sort()
+    print(str(dll) + "   -18   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+
+    dll.clear()
+    print(str(dll) + "   -19   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    
+
+    dll.insert("B")
+    print(str(dll) + "   -20   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("D")
+    print(str(dll) + "   -21   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("G")
+    print(str(dll) + "   -22   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("T")
+    print(str(dll) + "   -23   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("A")
+    print(str(dll) + "   -24   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("C")
+    print(str(dll) + "   -25   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.insert("B")
+    print(str(dll) + "   -26   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_next()
+    print(str(dll) + "   -27   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -28   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -29   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -30   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -31   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_first_node()
+    if result != None:
+        result = result.data
+    print("first node: ", str(result))
+    print(str(dll) + "   -32   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -33   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -34   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -35   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_last_node()
+    if result != None:
+        result = result.data
+    print("last node: ", str(result))
+    print(str(dll) + "   -36   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.clear()
+    print(str(dll) + "   -37   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
