@@ -33,7 +33,7 @@ class BSTMap:
             new_node = BT_node(key, data)
             return new_node
 
-        if node.key > key:
+        elif node.key > key:
             node.left = self.recursive_insert(node.left, key, data)
         elif node.key < key:
             node.right = self.recursive_insert(node.right, key, data)
@@ -48,13 +48,33 @@ class BSTMap:
         '''
         node = BT_node(key, data)
         self.root = self.recursive_insert(self.root, key, data)
+
+    def update(self, key, data):
+        '''
+        ○ Sets the data value of the value pair with equal key to data
+        ○ If equal key is not in the collection, raise NotFoundException()
+        '''
+        current_node = self.root
+        parent_node = None
+
+        while current_node is not None:
+            if key == current_node.key:
+                current_node.data = data
+                return
+            elif key < current_node.key:
+                parent_node = current_node
+                current_node = current_node.left
+            else:
+                parent_node = current_node
+                current_node = current_node.right
+        raise NotFoundException()
         
     def recursive_find(self, node, key):
         if node is None:
             return None
         if node.key == key:
             return node.data
-        if node.key > key:
+        elif node.key > key:
             return self.recursive_find(node.left, key)
         return self.recursive_find(node.right, key)
 
@@ -81,15 +101,46 @@ class BSTMap:
             return True
         else:
             return False
+    
+    def swap_and_remove_with_leftmost(self, node):
+        if node.left is not None:
+            self.swap_and_remove_with_leftmost(node.left)
+        else:
+            value = node.data
+            self._remove_node(node)
+            return value
+
+    def _remove_node(self, node):
+        if node.left is None and node.right is None:
+            return None
+        elif node.right is None:
+            return node.right
+        elif node.left is None:
+            return node.left
+        elif node.left is not None and node.right is not None:
+
+            node.data = self.swap_and_remove_with_leftmost(node.right)
         
 
+    def recursive_remove(self, node, key):
+        if node is None:
+            raise NotFoundException()
+        
+        elif node.key > key:
+            node.left = self.recursive_remove(node.left, key)
+        elif node.key < key:
+            node.right = self.recursive_remove(node.right, key)
+        else: # ==
+            return self._remove_node(node)
+        
     def remove(self, key):
         '''
         ○ Removes the value pair with equal key from the collection
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        pass
-
+        self.size -= 1
+        self.root = self.recursive_remove(self.root, key)
+    
     def __setitem__(self, key, data):
         '''
         ○ Override to allow this syntax:
@@ -97,7 +148,11 @@ class BSTMap:
         ○ If equal key is already in the collection, update its data value
             ■ Otherwise add the value pair to the collection
         '''
-        pass
+        true_false = self.recursive_find(self.root, key)
+        if true_false is None:
+            self.insert(key, data)
+        else:
+            self.update(key, data)
 
     def __getitem__(self, key):
         '''
@@ -106,7 +161,11 @@ class BSTMap:
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        pass
+        if self.contains(key):
+            data_value = self.find(key)
+            return data_value
+        else:
+            raise NotFoundException()
 
     def __len__(self):
         '''
@@ -114,7 +173,14 @@ class BSTMap:
             ■ length_of_structure = len(some_bst_map)
         ○ Returns the number of items in the entire data structure
         '''
-        pass
+        return self.size
+
+    def str_recur(self, node):
+        if node == None:
+            return "" 
+        # if node is not None:
+        return self.str_recur(node.left) + "{" + f'{node.key}:{node.data}' + '} ' + self.str_recur(node.right)
+       
 
     def __str__(self):
         '''
@@ -126,4 +192,13 @@ class BSTMap:
               print(“output: ” + str(m))
                 ● output: {3:three} {5:five} {7:seven}
         '''
-        pass
+        return self.str_recur(self.root)
+
+# m = BSTMap()
+
+# m.insert(5, "five")
+# m.insert(3, "three")
+# m.insert(7, "seven")
+
+
+# print(m[3])
