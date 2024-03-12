@@ -194,11 +194,27 @@ class BSTMap:
         '''
         return self.str_recur(self.root)
 
-# m = BSTMap()
-
-# m.insert(5, "five")
-# m.insert(3, "three")
-# m.insert(7, "seven")
 
 
-# print(m[3])
+class MyComparableKey:
+    def __init__(self, int_value, string_value):
+        '''
+        ○ A constructor that takes an integer value and a string value
+        '''
+        self.int_value = int_value
+        self.string_value = string_value
+
+    def __lt__(self, other):
+        '''
+        Compares two instances of MyComparableKey and returns True if the value of
+        self is lower, otherwise False.
+        ○ A key value is considered lower if the integer value is lower.
+            ■ In case of equal integers the order of the strings is used.
+        ○ It is OK to use built in operators for base types in this implementation.
+        
+        '''
+        if self.int_value == other.int_value:
+            return self.string_value < other.string_value
+        return self.int_value < other.int_value
+
+      
