@@ -92,19 +92,21 @@ class Bucket:
         ○ Removes the value pair with equal key from the collection
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        # current = self.head
-        # previous = None
-        # while current is not None:
-        #     if current.key == key:
-        #         if previous is None:
-        #             self.head = current.next
-        #         else:
-        #             previous.next = current.next
-        #         self.size -= 1
-        #         return
-        #     previous = current
-        #     current = current.next
-        # raise NotFoundException()
+        current = self.head
+        previous = None
+        try:
+            while current is not None:
+                if current.key == key:
+                    if previous is None:
+                        self.head = current.next
+                    else:
+                        previous.next = current.next # finna afhverju previous.next = current.next en ekki current = current.next
+                    self.size -= 1
+                    return
+                previous = current
+                current = current.next
+        except:
+            raise NotFoundException()
             
     def __setitem__(self, key, data):
         '''
@@ -113,7 +115,10 @@ class Bucket:
         ○ If equal key is already in the collection, update its data value
             ■ Otherwise add the value pair to the collection
         '''
-        pass
+        if self.contains(key):
+            self.update(key, data)
+        else:
+            self.insert(key, data)
     
     def __getitem__(self, key):
         '''
@@ -123,7 +128,10 @@ class Bucket:
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        pass
+        if self.contains(key):
+            return self.find(key)
+        else:
+            raise NotFoundException()
     
     def __len__(self):
         '''
@@ -267,12 +275,17 @@ if __name__ == "__main__":
     bucket.insert(2, "two")
     print("after inserting 1 and 2, bucket.size): ",bucket.size)
     # outcome: 2
-    bucket.insert(3, "three")
+    bucket.insert(5, "five")
     print("after inserting 1, 2 and 3 bucket.size: ", bucket.size)
     # outcome: 3
-    bucket.insert(4, "four")
-    print("after inserting 1, 2, 3, 4 bucket.size: ", bucket.size)
-    # outcome: 4
+    bucket.insert(7, "seven")
+    print("after inserting 1, 2, 5, 7 bucket.size: ", bucket.size)
+    # outcome: 3
+    bucket.remove(2)
+    print("after removing 2, bucket.size: ", bucket.size)
+    # outcome: 3
+    bucket.remove(3)
+    print("after removing 3, bucket.size: ", bucket.size)
 
     print("")
 
@@ -291,4 +304,6 @@ if __name__ == "__main__":
     k4 = MyHashableKey(17, "seventeen")
     print(hash(k4))
     # outcome: 7
+
+
 
