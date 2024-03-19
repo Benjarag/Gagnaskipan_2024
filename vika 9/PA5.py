@@ -17,23 +17,19 @@ class Bucket:
         self.size = 0
 
     def recursive_insert(self, node, key, value):
-        if node is None:
-            self.size += 1
-            new_node = SLL_node(key, value)
-            print(new_node.data)
-            return new_node
-        elif node.key > key:
-            print(node.key, key)
-            node.next = self.recursive_insert(node.next, key, value)
-            print(node.next.data)
-        elif node.key < key:
-            print(node.key, key) 
-            self.size += 1
-            new_node = SLL_node(key, value)
-            new_node.next = node
-            print(new_node.data, new_node.next.data)
-            return new_node
-        else:
+        try:
+            if node is None:
+                self.size += 1
+                new_node = SLL_node(key, value)
+                return new_node
+            elif node.key > key:
+                node.next = self.recursive_insert(node.next, key, value)
+            elif node.key < key:
+                self.size += 1
+                new_node = SLL_node(key, value)
+                new_node.next = node
+                return new_node
+        except:
             raise ItemExistsException()
         return node
 
@@ -42,10 +38,12 @@ class Bucket:
         ○ Adds this value pair to the collection
         ○ If equal key is already in the collection, raise ItemExistsException()
         '''
-        if self.contains(key) == key:
+        if self.contains(key):
             raise ItemExistsException()
-        else:
-            self.head = self.recursive_insert(self.head, key, data)
+        self.head = self.recursive_insert(self.head, key, data)
+
+    def insert_uptade(self, key, data):
+        self.head = self.recursive_insert(self.head, key, data)
 
     def update(self, key, data):
         '''
@@ -57,10 +55,9 @@ class Bucket:
             while current is not None:
                 if current.key == key:
                     current.data = data
-                    self.head = current
+                    return
                 current = current.next
-            else:
-                raise NotFoundException()
+            raise NotFoundException()
         else:
             raise NotFoundException()
 
@@ -144,59 +141,68 @@ class Bucket:
 
 class HashMap:
     def __init__(self):
-        self.bucket_count = 10
-        self.size = 0
-        self.bucket_list = self.build_bucket_list()
+        self.bucket_count = 4
+        self.build_bucket_list()
 
-        
-    
     def build_bucket_list(self):
-        return [Bucket() for _ in range(self.bucket_count)]
+        self.size = 0
+        self.bucket_list = [Bucket() for _ in range(self.bucket_count)]
 
     def insert(self, key, data):
         '''
         ○ Adds this value pair to the collection
         ○ If equal key is already in the collection, raise ItemExistsException()
         '''
+        self.rebuild()
         if self.contains(key):
             raise ItemExistsException()
-        else:
-            hash = MyHashableKey()
-            index = hash.__hash__() % self.size
-            self.bucket_list[index].insert(key, data)
-            self.size += 1
+        index = hash(key) % self.bucket_count
+        self.bucket_list[index].insert(key, data)
+        self.size += 1
 
     def update(self, key, data):
         '''
         ○ Sets the data value of the value pair with equal key to data
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        pass
+        if not self.contains(key):
+            raise NotFoundException()
+        else:
+            index = hash(key) % self.bucket_count
+            self.bucket_list[index].insert_uptade(key, data)
+            
 
     def find(self, key):
         '''
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        hash = MyHashableKey()
-        index = hash.__hash__() % self.size
-        return self.bucket_list[index].find(key)
+        for bucket in self.bucket_list:
+            if bucket.contains(key):
+                return bucket.find(key)
+        raise NotFoundException()
     
     def contains(self, key):
         '''
         ○ Returns True if equal key is found in the collection, otherwise False
         '''
-        pass
+        index = hash(key) % self.bucket_count
+        if self.bucket_list[index].contains(key):
+            return True
+        else:
+            return False
 
     def remove(self, key):
         '''
         ○ Removes the value pair with equal key from the collection
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        index = self.hash(key) % self.size
-        if self.bucket_list[index].find(key) == key:
-            self.bucket_list[index].remove(key)
-        else:
+        index = hash(key) % self.bucket_count
+        try:
+            if self.bucket_list[index].contains(key):
+                self.bucket_list[index].remove(key)
+                self.size -= 1
+        except:
             raise NotFoundException()
     
     def __setitem__(self, key, data):
@@ -206,7 +212,10 @@ class HashMap:
         ○ If equal key is already in the collection, update its data value
             ■ Otherwise add the value pair to the collection
         '''
-        pass
+        if self.contains(key):
+            self.update(key, data)
+        else:
+            self.insert(key, data)
     
     def __getitem__(self, key):
         '''
@@ -216,7 +225,10 @@ class HashMap:
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        pass
+        if self.contains(key):
+            return self.find(key)
+        else:
+            raise NotFoundException
     
     def __len__(self):
         '''
@@ -224,14 +236,25 @@ class HashMap:
             ■ length_of_structure = len(some_hash_map)
         ○ Returns the number of items in the entire data structure
         '''
-        pass
+        return self.size
     
     def rebuild(self):
         '''
         When the number of items in the HashMap has reached 120% of the number of buckets (length
         of array or list) it must rebuild(), doubling the number of buckets.
         '''
-        pass
+        if self.size >= self.bucket_count * 1.2:
+            temp_bucket_list = self.bucket_list
+            self.bucket_count *= 2
+            self.build_bucket_list()
+            for bucket in temp_bucket_list:
+                current = bucket.head
+                while current is not None:
+                    self.insert(current.key, current.data)
+                    current = current.next
+                
+
+                
 
 
 class MyHashableKey:
@@ -241,7 +264,7 @@ class MyHashableKey:
         '''
         self.int_value = int_value
         self.string_value = string_value
-    
+
     def __eq__(self, other):
         '''
         ○ Compares two instances of MyHashableKey and returns True if their values are
@@ -268,42 +291,4 @@ class MyHashableKey:
         return (self.int_value % hashmap.bucket_count)
 
 if __name__ == "__main__":
-    bucket = Bucket()
-    bucket.insert(1, "one")
-    print("after inserting 1, bucket.size: ",bucket.size)
-    # outcome: 1
-    bucket.insert(2, "two")
-    print("after inserting 1 and 2, bucket.size): ",bucket.size)
-    # outcome: 2
-    bucket.insert(5, "five")
-    print("after inserting 1, 2 and 3 bucket.size: ", bucket.size)
-    # outcome: 3
-    bucket.insert(7, "seven")
-    print("after inserting 1, 2, 5, 7 bucket.size: ", bucket.size)
-    # outcome: 3
-    bucket.remove(2)
-    print("after removing 2, bucket.size: ", bucket.size)
-    # outcome: 3
-    bucket.remove(3)
-    print("after removing 3, bucket.size: ", bucket.size)
-
-    print("")
-
-    k1 = MyHashableKey(1, "one")
-    print(hash(k1))
-    # outcome: 1
-    k2a = MyHashableKey(28, "twenty eight")
-    print(hash(k2a))
-    # outcome: 8
-    k2b = MyHashableKey(2, "two")
-    print(hash(k2b))
-    # outcome: 2
-    k3 = MyHashableKey(3, "three")
-    print(hash(k3))
-    # outcome: 3
-    k4 = MyHashableKey(17, "seventeen")
-    print(hash(k4))
-    # outcome: 7
-
-
-
+    pass
