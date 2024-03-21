@@ -46,7 +46,6 @@ class BSTMap:
         ○ Adds this value pair to the collection
         ○ If equal key is already in the collection, raise ItemExistsException()
         '''
-        node = BT_node(key, data)
         self.root = self.recursive_insert(self.root, key, data)
 
     def update(self, key, data):
@@ -55,17 +54,14 @@ class BSTMap:
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
         current_node = self.root
-        parent_node = None
 
         while current_node is not None:
             if key == current_node.key:
                 current_node.data = data
                 return
             elif key < current_node.key:
-                parent_node = current_node
                 current_node = current_node.left
             else:
-                parent_node = current_node
                 current_node = current_node.right
         raise NotFoundException()
         
@@ -87,10 +83,6 @@ class BSTMap:
         if data_value is None:
             raise NotFoundException()
         return data_value
-
-    def recursive_contain(self, node, key):
-        if node.key == key:
-            return True
         
     def contains(self, key):
         '''
@@ -138,8 +130,8 @@ class BSTMap:
         ○ Removes the value pair with equal key from the collection
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        self.size -= 1
         self.root = self.recursive_remove(self.root, key)
+        self.size -= 1
     
     def __setitem__(self, key, data):
         '''

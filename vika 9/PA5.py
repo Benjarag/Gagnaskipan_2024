@@ -97,7 +97,7 @@ class Bucket:
                     if previous is None:
                         self.head = current.next
                     else:
-                        previous.next = current.next # finna afhverju previous.next = current.next en ekki current = current.next
+                        previous.next = current.next
                     self.size -= 1
                     return
                 previous = current
