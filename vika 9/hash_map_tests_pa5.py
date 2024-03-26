@@ -21,7 +21,8 @@ def test_map(m):
     try:
         m.insert(5, "fimmarimma")
     except ItemExistsException:
-        print("Item already exists")
+        print("Item already exists - should happen")
+   
     m[1] = "ás"
 
     try:
@@ -31,16 +32,16 @@ def test_map(m):
     try:
         m.update(6, "sexxxxxa")
     except NotFoundException:
-        print("Item not found")
+        print("Item not found - should happen")
 
     m[6] = "sexa"
 
-    print("size of map: " + str(len(m)))
+    print("size of map: - should be 5: " + str(len(m)))
     print(m.contains(12))
     m[12] = "drottning"
     print(m.contains(12))
 
-    print("size of map: " + str(len(m)))
+    print("size of map: should be 6: " + str(len(m)))
     try:
         print(m.find(4))
     except NotFoundException:
@@ -64,20 +65,20 @@ def test_map(m):
     try:
         print(m[7])
     except NotFoundException:
-        print("Item not found")
+        print("Item not found - should happen")
 
-    print("size of map: " + str(len(m)))
+    print("size of map: - should be 6: " + str(len(m)))
     try:
         m.remove(5)
-        print("Item removed")
+        print("Item removed - should happen")
     except NotFoundException:
         print("Item not found")
     try:
         print(m.find(5))
     except NotFoundException:
-        print("Item not found")
+        print("Item not found - should happen")
         
-    print("size of map: " + str(len(m)))
+    print("size of map: - should be 5: " + str(len(m)))
 
 
 

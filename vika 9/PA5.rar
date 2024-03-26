@@ -97,7 +97,7 @@ class Bucket:
                     if previous is None:
                         self.head = current.next
                     else:
-                        previous.next = current.next # finna afhverju previous.next = current.next en ekki current = current.next
+                        previous.next = current.next
                     self.size -= 1
                     return
                 previous = current
@@ -147,6 +147,9 @@ class HashMap:
     def build_bucket_list(self):
         self.size = 0
         self.bucket_list = [Bucket() for _ in range(self.bucket_count)]
+    
+    def index_hash(self, key):
+        return hash(key) % self.bucket_count
 
     def insert(self, key, data):
         '''
@@ -156,7 +159,7 @@ class HashMap:
         self.rebuild()
         if self.contains(key):
             raise ItemExistsException()
-        index = hash(key) % self.bucket_count
+        index = self.index_hash(key)
         self.bucket_list[index].insert(key, data)
         self.size += 1
 
@@ -168,9 +171,8 @@ class HashMap:
         if not self.contains(key):
             raise NotFoundException()
         else:
-            index = hash(key) % self.bucket_count
+            index = self.index_hash(key)
             self.bucket_list[index].insert_uptade(key, data)
-            
 
     def find(self, key):
         '''
@@ -186,7 +188,7 @@ class HashMap:
         '''
         ○ Returns True if equal key is found in the collection, otherwise False
         '''
-        index = hash(key) % self.bucket_count
+        index = self.index_hash(key)
         if self.bucket_list[index].contains(key):
             return True
         else:
@@ -197,7 +199,7 @@ class HashMap:
         ○ Removes the value pair with equal key from the collection
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        index = hash(key) % self.bucket_count
+        index = self.index_hash(key)
         try:
             if self.bucket_list[index].contains(key):
                 self.bucket_list[index].remove(key)
@@ -216,7 +218,7 @@ class HashMap:
             self.update(key, data)
         else:
             self.insert(key, data)
-    
+
     def __getitem__(self, key):
         '''
 
@@ -237,7 +239,7 @@ class HashMap:
         ○ Returns the number of items in the entire data structure
         '''
         return self.size
-    
+
     def rebuild(self):
         '''
         When the number of items in the HashMap has reached 120% of the number of buckets (length
@@ -253,9 +255,6 @@ class HashMap:
                     self.insert(current.key, current.data)
                     current = current.next
                 
-
-                
-
 
 class MyHashableKey:
     def __init__(self, int_value, string_value):
