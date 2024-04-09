@@ -93,9 +93,6 @@ class wordle:
         # ○ Don't need password login, but switching/selecting users
         self.word_bank = []
         self.word_bank_file = "word_bank.txt"
-        print("Welcome to Wordle")
-        print("You have 5 guesses to guess a 5 letter word")
-        print("Good luck")
         print(self.word)
     
     def get_hints(self):
@@ -124,8 +121,16 @@ class wordle:
         '''
         ● Allow user to see their history of games/scores
         '''
-        print(f"wins: {wordle.wins}")
+        print(f"\nwins: {wordle.wins}")
         print(f"losses: {wordle.losses}")
+    
+    def add_word_to_word_bank(self, word):
+        '''
+        Allow words to be added to the word bank (and file) through the program itself
+        '''
+        with open(self.word_bank_file, "a") as f:
+            f.write(word + " ")            
+        print("Word added to word bank")
 
     def play_game(self):
         '''
@@ -146,16 +151,58 @@ class wordle:
     
 
 
-if __name__ == '__main__':
-    game = wordle()
+def main_menu():
+    print("\nWelcome to Wordle")
+    print("\n  [Play game] : p")
+    print("\n  [Add word to word bank] : a")
+    print("\n  [Quit] : q")
+
+def game_menu():
+    print("\n[Return to main menu] : r")
+    print("\n[See game history] : h")
+    print("\n[Play another game] : y")
+    print("\n[Quit] : any other key")
+
+def play_game(game):
+    print("\nYou have 5 guesses to guess a 5 letter word")
+    print("Good luck\n")
     game.play_game()
+    game_menu_choice()
+
+def game_menu_choice():
+    game = wordle()
+    game_menu()
+    choice = input("\nEnter your choice: ")
+    if choice.lower() == "r":
+        main_menu_choice()
+    elif choice.lower() == "h":
+        game.get_game_history()
+        game_menu_choice()
+    elif choice.lower() == "y":
+        play_game(game)
+    else:
+        print("quitting...")
+        exit()
+        
+def main_menu_choice():
+    main_menu()
+    choice = input("\nEnter your choice: ")
+    if choice == "p":
+        play_game(game)
+    elif choice == "a":
+        word = input("Enter the word to add to the word bank: ")
+        game.add_word_to_word_bank(word)
+        main_menu_choice()
+    elif choice == "q":
+        exit()
+    elif not choice in ["p", "a", "q"]:
+        print("Invalid choice")
+        main_menu_choice()
+
+if __name__ == '__main__':
     while True:
-        play_again = input("Do you want to play again? (y/n): ")
-        if play_again.lower() == "y":
-            game = wordle()
-            game.play_game()
-        else:
-            break
-    print("Thank you for playing Wordle")
-    game.get_game_history()
+        game = wordle()
+        main_menu_choice()
+        print("Thank you for playing Wordle")
+        game.get_game_history()
 
