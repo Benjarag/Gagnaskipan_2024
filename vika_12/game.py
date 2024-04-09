@@ -74,36 +74,38 @@ class wordle:
     wins = 0
     losses = 0
     
-    def __init__(self):
-        self.word = pick_a_random_word()
-        self.guesses = 5
+    def __init__(self, word_lenght=5, guesses=5):
+
+        self.word_lenght = word_lenght
+        self.guesses = guesses
+        self.word = pick_a_random_word(word_lenght)
         self.guessed_word = ""
-        self.guesses_left = 5
-        # Keep track of wins and losses throughout the run (store in classes/variables) - 5%
-        # ● Find a way to score series of games and keep track of high scores - 5%
-        # ○ Total scores can for example be affected by (but not limited by):
-        # ■ # of wrong guesses per word
-        # ■ length of word
-        # ■ # of games before loss (or total score of those games), etc.
-        # ● Scores/highscores stored so that they live between runs of the program - 5%
-        # ● Allow words to be added to the word bank (and file) through the program itself - 5%
-        # ● Allow user to see their history of games/scores - 5%
-        # ● Allow save/profile for multiple users - 5%
-        # ○ Students figure out how best to accomplish this
-        # ○ Don't need password login, but switching/selecting users
+        self.guesses_left = guesses
+     
         self.word_bank = []
-        self.word_bank_file = "word_bank.txt"
         print(self.word)
     
+    def build_ret_str(self):
+        '''
+        Builds a string so the user will see the hints
+        for the word correctly under the guessed word
+        '''
+        ret_str = "                                 "
+        if self.guesses_left >= 10:
+            ret_str += " "
+        if self.guesses_left >= 100:
+            ret_str += " "
+        return ret_str
+
     def get_hints(self):
         '''
         Display code with each guess, -c-C- -
         '''
-        ret_str = "                               "
-        for i in range(5):
-            if self.word[i] == self.guessed_word[i]:
+        ret_str = self.build_ret_str()
+        for i in range(self.word_lenght):
+            if self.word.lower()[i] == self.guessed_word.lower()[i]:
                 ret_str += "C"
-            elif self.guessed_word[i] in self.word:
+            elif self.guessed_word.lower()[i] in self.word.lower():
                 ret_str += "c"
             else:
                 ret_str += "-"
@@ -111,10 +113,10 @@ class wordle:
         return ret_str
                 
     def get_guessed_word(self):
-        guessed_word = input(f"you have {self.guesses_left} guess left, guess : ")
-        while len(guessed_word) != 5 or guessed_word.isalpha() == False:
-            print("Please enter a 5 letter word")
-            guessed_word = input(f"you have {self.guesses_left} guess left, guess : ")
+        guessed_word = input(f"you have {self.guesses_left} guesses left, guess : ")
+        while len(guessed_word) != self.word_lenght or guessed_word.isalpha() == False:
+            print(f"Please enter a {self.word_lenght} letter word")
+            guessed_word = input(f"you have {self.guesses_left} guesses left, guess : ")
         return guessed_word
 
     def get_game_history(self):
@@ -128,8 +130,8 @@ class wordle:
         '''
         Allow words to be added to the word bank (and file) through the program itself
         '''
-        with open(self.word_bank_file, "a") as f:
-            f.write(word + " ")            
+        with open("vika_12/word_bank_random.txt", "a") as f:
+            f.write(word + "\n")            
         print("Word added to word bank")
 
     def play_game(self):
@@ -140,7 +142,7 @@ class wordle:
         while self.guesses_left > 0:
             self.guessed_word = self.get_guessed_word()
             self.get_hints()
-            if self.guessed_word == self.word:
+            if self.guessed_word.strip().lower() == self.word.strip().lower():
                 print("You guessed the word!")
                 wordle.wins += 1
                 break
@@ -153,9 +155,9 @@ class wordle:
 
 def main_menu():
     print("\nWelcome to Wordle")
-    print("\n  [Play game] : p")
-    print("\n  [Add word to word bank] : a")
-    print("\n  [Quit] : q")
+    print("\n   [Play game] : p")
+    print("\n   [Add word to word bank] : a")
+    print("\n   [Quit] : q")
 
 def game_menu():
     print("\n[Return to main menu] : r")
@@ -163,14 +165,30 @@ def game_menu():
     print("\n[Play another game] : y")
     print("\n[Quit] : any other key")
 
-def play_game(game):
-    print("\nYou have 5 guesses to guess a 5 letter word")
+def play_game():
+    # input validation for word length
+    while True:
+        length = input("Enter the length of the word you would like: ")
+        if length.isdigit() and 1 <= int(length) <= 14:
+            break
+        print("Please enter a number between 1 and 14.")
+
+    # input validation for number of guesses
+    while True:
+        guesses = input("Enter the number of guesses you would like: ")
+        if guesses.isdigit() and 1 <= int(guesses) <= 100:
+            break
+        print("Please choose a number between 1 and 100.")
+
+    print(f"\nYou have {int(guesses)} guesses to guess a {int(length)} letter word")
     print("Good luck\n")
+
+    game = wordle(int(length), int(guesses))
     game.play_game()
     game_menu_choice()
 
 def game_menu_choice():
-    game = wordle()
+    game = wordle(int(), int())
     game_menu()
     choice = input("\nEnter your choice: ")
     if choice.lower() == "r":
@@ -179,16 +197,17 @@ def game_menu_choice():
         game.get_game_history()
         game_menu_choice()
     elif choice.lower() == "y":
-        play_game(game)
+        play_game()
     else:
         print("quitting...")
         exit()
-        
+
 def main_menu_choice():
+    game = wordle()
     main_menu()
     choice = input("\nEnter your choice: ")
     if choice == "p":
-        play_game(game)
+        play_game()
     elif choice == "a":
         word = input("Enter the word to add to the word bank: ")
         game.add_word_to_word_bank(word)
@@ -201,8 +220,6 @@ def main_menu_choice():
 
 if __name__ == '__main__':
     while True:
-        game = wordle()
         main_menu_choice()
         print("Thank you for playing Wordle")
-        game.get_game_history()
 
