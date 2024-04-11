@@ -16,7 +16,6 @@ class wordle:
         self.wrong_guessed_letters = ""
         self.right_guessed_letters = ""
         self.half_right_guessed_letters = ""
-        print("The word is", self.word)
     
     def build_ret_str(self):
         '''
