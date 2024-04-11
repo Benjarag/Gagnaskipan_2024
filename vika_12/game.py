@@ -12,8 +12,11 @@ class wordle:
         self.word = pick_a_random_word(words, word_lenght)
         self.guessed_word = ""
         self.guesses_left = guesses
-        print(self.word)
-        # self.word_bank = []
+        self.guessed_letters = ""
+        self.wrong_guessed_letters = ""
+        self.right_guessed_letters = ""
+        self.half_right_guessed_letters = ""
+        print("The word is", self.word)
     
     def build_ret_str(self):
         '''
@@ -29,16 +32,23 @@ class wordle:
 
     def get_hints(self):
         '''
-        Display code with each guess, -c-C- -
+        Builds the hints for the user
+        such as C, c, - and prints them
         '''
         ret_str = self.build_ret_str()
         for i in range(self.word_lenght):
             if self.word.lower()[i] == self.guessed_word.lower()[i]:
                 ret_str += "C"
+                self.right_guessed_letters += self.guessed_word.lower()[i]
+            elif (self.guessed_word.lower()[i] in self.right_guessed_letters) and (self.word.lower().count(self.guessed_word.lower()[i]) == 1):
+            # else if letter is already guessed correctly at the correct position and the word does not have any more of the particular letter add a "-" to the return string
+                ret_str += "-"
             elif self.guessed_word.lower()[i] in self.word.lower():
                 ret_str += "c"
+                self.half_right_guessed_letters += self.guessed_word.lower()[i]
             else:
                 ret_str += "-"
+                self.wrong_guessed_letters += self.guessed_word.lower()[i]
         print(ret_str)
         return ret_str
                 
@@ -73,6 +83,7 @@ class wordle:
         while self.guesses_left > 0:
             self.guessed_word = self.get_guessed_word()
             self.get_hints()
+            print(self.print_keyboard_state())
             if self.guessed_word.strip().lower() == self.word.strip().lower():
                 print("You guessed the word!")
                 wordle.wins += 1
@@ -88,6 +99,18 @@ class wordle:
             wordle.winstreak = 0
             store_current_run(current_user, wordle.wins, wordle.losses, wordle.highscore, wordle.winstreak)
 
+    def print_keyboard_state(self):
+        '''
+        takes a list of letters and prints the keyboard state with "#" for the letters that are in the list
+        '''
+        keyboard = "q w e r t y u i o p\n a s d f g h j k l\n  z x c v b n m\n"
+        for letter in self.wrong_guessed_letters:
+            keyboard = keyboard.replace(letter, "#")
+        for letter in self.right_guessed_letters:
+            keyboard = keyboard.replace(letter, letter.upper())
+        for letter in self.half_right_guessed_letters:
+            keyboard = keyboard.replace(letter, letter.upper())
+        return keyboard
 
 def main_menu():
     '''
