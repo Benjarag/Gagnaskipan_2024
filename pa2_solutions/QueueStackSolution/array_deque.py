@@ -1,3 +1,5 @@
+#s
+
 class ArrayDeque():
     def __init__(self):
         self.capacity = 4
@@ -63,6 +65,20 @@ class ArrayDeque():
 if __name__ == "__main__":
     
     deque = ArrayDeque()
+    # deque.push_front(11)
+    # deque.push_front(10)
+    # deque.push_back(3)
+    # deque.push_back(1)
+    # deque.push_back(6)
+    # print("size: " + str(deque.get_size()))
+    # print(deque)
+    # deque.pop_back()
+    # print(deque)
+    # deque.pop_back()
+    # print(deque)
+
+
+
     deque.push_front(11)
     deque.push_front(10)
     deque.push_back(3)

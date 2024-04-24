@@ -16,7 +16,6 @@ class ArrayList:
         self.arr = [None] * self.capacity
         self.size = 0
     
-
     #Time complexity: O(n) - linear time in size of list
     def __str__(self):
         return_string = ""
@@ -36,7 +35,6 @@ class ArrayList:
         Inserts an item into the list before the first item 
         '''
         return self.insert(value, 0)
-
         
     #Time complexity: O(n) - linear time in size of list
     def insert(self, value, index):
