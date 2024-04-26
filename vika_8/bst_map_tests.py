@@ -1,4 +1,4 @@
-from pa4 import *
+from bst_map_pa4_solution import *
 # you can also import more than one file,
 # although if one imports the other it should
 # be enough to import the top level one
@@ -81,7 +81,7 @@ def test_map(m):
     try:
         print(m.find(5),end="\n\n")
     except NotFoundException:
-        print("Item not found")
+        print("Item not found -já")
         
     print("size of map: " + str(len(m)))
 

@@ -10,7 +10,6 @@ class SLL_node:
         self.data = data
         self.next = next
 
-
 class Bucket:
     def __init__(self):
         self.head = None

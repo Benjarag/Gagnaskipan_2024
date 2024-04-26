@@ -1,5 +1,5 @@
 import unittest
-from kennslustund_10_20feb import Node, SingleLinkedList
+from kennslustund_10_SLL import Node, SingleLinkedList
 
 class TestSingleLinkedList(unittest.TestCase):
     def setUp(self):

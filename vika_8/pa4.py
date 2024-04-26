@@ -16,6 +16,14 @@ class BT_node:
         self.left = left
         self.right = right
 
+    def __str__(self):
+        ret_str = ""
+        if self.left != None:
+            ret_str += str(self.left)
+        ret_str += "{" + str(self.key) + ":" + str(self.data) + "} "
+        if self.right != None:
+            ret_str += str(self.right)
+        return ret_str
 
 class BSTMap:
     '''
@@ -27,16 +35,14 @@ class BSTMap:
         self.root = None
         self.size = 0
         
-    def recursive_insert(self, node, key, data):
-        if node is None:
+    def recursive_insert(self, key, data, node):# favored
+        if node == None:
             self.size += 1
-            new_node = BT_node(key, data)
-            return new_node
-
-        elif node.key > key:
-            node.left = self.recursive_insert(node.left, key, data)
+            return BT_node(key, data)
+        elif key < node.key:
+            node.left = self.recursive_insert(key, data, node.left)
         elif node.key < key:
-            node.right = self.recursive_insert(node.right, key, data)
+            node.right = self.recursive_insert(key, data, node.right)
         else:
             raise ItemExistsException()
         return node
@@ -46,45 +52,38 @@ class BSTMap:
         ○ Adds this value pair to the collection
         ○ If equal key is already in the collection, raise ItemExistsException()
         '''
-        self.root = self.recursive_insert(self.root, key, data)
+        self.root = self.recursive_insert(key, data, self.root)
 
-    def update(self, key, data):
+    def recursive_find(self, node, key):# favored
+        if node is None:
+            return None
+        if node.key == key:
+            return node
+        elif node.key > key:
+            return self.recursive_find(node.left, key)
+        return self.recursive_find(node.right, key)
+    
+    def update(self, key, data):# favored
         '''
         ○ Sets the data value of the value pair with equal key to data
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        current_node = self.root
-
-        while current_node is not None:
-            if key == current_node.key:
-                current_node.data = data
-                return
-            elif key < current_node.key:
-                current_node = current_node.left
-            else:
-                current_node = current_node.right
-        raise NotFoundException()
+        node = self.recursive_find(self.root, key)
+        if node == None:
+            raise NotFoundException()
+        node.data = data
         
-    def recursive_find(self, node, key):
-        if node is None:
-            return None
-        if node.key == key:
-            return node.data
-        elif node.key > key:
-            return self.recursive_find(node.left, key)
-        return self.recursive_find(node.right, key)
-
-    def find(self, key):
+    def find(self, key):# favored
         '''
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        data_value = self.recursive_find(self.root, key)
-        if data_value is None:
+        node = self.recursive_find(self.root, key)
+        if node is None:
             raise NotFoundException()
-        return data_value
+        return node.data
         
-    def contains(self, key):
+    def contains(self, key):# favored
         '''
         ○ Returns True if equal key is found in the collection, otherwise False
         '''
@@ -110,7 +109,6 @@ class BSTMap:
         elif node.left is None:
             return node.left
         elif node.left is not None and node.right is not None:
-
             node.data = self.swap_and_remove_with_leftmost(node.right)
         
 
@@ -140,12 +138,8 @@ class BSTMap:
         ○ If equal key is already in the collection, update its data value
             ■ Otherwise add the value pair to the collection
         '''
-        true_false = self.recursive_find(self.root, key)
-        if true_false is None:
-            self.insert(key, data)
-        else:
-            self.update(key, data)
-
+        self.insert(key, data)
+        
     def __getitem__(self, key):
         '''
         ○ Override to allow this syntax:
@@ -153,11 +147,7 @@ class BSTMap:
         ○ Returns the data value of the value pair with equal key
         ○ If equal key is not in the collection, raise NotFoundException()
         '''
-        if self.contains(key):
-            data_value = self.find(key)
-            return data_value
-        else:
-            raise NotFoundException()
+        return self.find(key)
 
     def __len__(self):
         '''
@@ -167,11 +157,11 @@ class BSTMap:
         '''
         return self.size
 
-    def str_recur(self, node):
-        if node == None:
-            return "" 
-        # if node is not None:
-        return self.str_recur(node.left) + "{" + f'{node.key}:{node.data}' + '} ' + self.str_recur(node.right)
+    # def str_recur(self, node):
+    #     if node == None:
+    #         return "" 
+    #     # if node is not None:
+    #     return self.str_recur(node.left) + "{" + f'{node.key}:{node.data}' + '} ' + self.str_recur(node.right)
        
 
     def __str__(self):
@@ -184,7 +174,7 @@ class BSTMap:
               print(“output: ” + str(m))
                 ● output: {3:three} {5:five} {7:seven}
         '''
-        return self.str_recur(self.root)
+        return str(self.root).strip() if self.root != None else ""
 
 
 
